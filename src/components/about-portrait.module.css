@@ -1,0 +1,202 @@
+@font-face {
+  font-family: "About Inter Tight";
+  src: url("/fonts/inter-tight-semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 42.5fr) minmax(0, 57.5fr);
+  gap: 0;
+  align-items: center;
+  min-height: clamp(720px, 56.3vw, 960px);
+  isolation: isolate;
+  background: radial-gradient(ellipse at 83% 55%, #e9f1ff70, transparent 65%);
+}
+.copy {
+  min-width: 0;
+  container-type: inline-size;
+  position: relative;
+  z-index: 1;
+}
+.copy :global(.eyebrow) {
+  font-size: clamp(10px, 0.8vw, 14px);
+  margin-bottom: 36px;
+}
+.heading {
+  font-family: "About Inter Tight", "Manrope Variable", sans-serif;
+  font-size: clamp(28px, 11.65cqw, 80px);
+  line-height: 1.14;
+  letter-spacing: -0.055em;
+  font-weight: 600;
+}
+.lineMask {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+.lineMask > span {
+  display: block;
+  white-space: nowrap;
+}
+.body {
+  max-width: 600px;
+  font-size: clamp(17px, 1.3vw, 22px);
+  line-height: 1.65;
+  margin: 38px 0;
+  padding-right: 12px;
+}
+.copy :global(.inline-link) {
+  font-size: clamp(14px, 1.13vw, 19px);
+  gap: 23px;
+}
+.visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 900 / 770;
+  perspective: 1800px;
+}
+.backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.atmosphere {
+  position: absolute;
+  inset: 10% 0 0;
+  background: radial-gradient(ellipse at 65% 65%, #b4d0ff55, transparent 65%);
+}
+.tilt {
+  position: absolute;
+  inset: 0;
+  transform-origin: 55% 45%;
+}
+.frame {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* Feather only the crop boundary, preserving the original frame and glass ribbon. */
+  mask-image:
+    linear-gradient(to right, transparent, #000 2%, #000 98%, transparent),
+    linear-gradient(to bottom, transparent, #000 2%, #000 97%, transparent);
+  mask-composite: intersect;
+}
+.photo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.photo img {
+  /* Exact source viewport: x=730, y=105, width=900, height=770 in the 1672x941 mockup. */
+  position: absolute;
+  width: 185.777778%;
+  max-width: none;
+  height: 122.207792%;
+  left: -81.111111%;
+  top: -13.636364%;
+  object-fit: fill;
+}
+.cardPosition {
+  display: none;
+}
+.accessibleCaption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media (min-width: 768px) and (max-width: 1100px) {
+  .about {
+    min-height: 650px;
+  }
+  .copy :global(.eyebrow) {
+    margin-bottom: 24px;
+  }
+  .body {
+    font-size: 16px;
+    margin: 26px 0;
+  }
+}
+@media (max-width: 767px) {
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+    min-height: 0;
+  }
+  .copy {
+    max-width: 580px;
+  }
+  .copy :global(.eyebrow) {
+    font-size: 10px;
+    margin-bottom: 25px;
+  }
+  .heading {
+    font-size: clamp(29px, 11.45cqw, 62px);
+  }
+  .body {
+    font-size: 17px;
+    margin: 26px 0;
+    padding-right: 0;
+  }
+  .copy :global(.inline-link) {
+    font-size: 14px;
+  }
+  .visual {
+    width: calc(100% + 20px);
+    margin: 0 -10px;
+    max-width: 580px;
+  }
+  /* Preserve the reference image, but keep the professional label readable on small screens. */
+  .cardPosition {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 62%;
+    width: 46%;
+    max-width: 220px;
+  }
+  .roleCard {
+    padding: 14px 17px;
+    border: 1px solid #fff;
+    border-radius: 22px;
+    background: linear-gradient(130deg, #f7fafffa, #eaf1fff2);
+    box-shadow: 0 10px 20px -13px #4d74b555;
+  }
+  .codeIcon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    color: var(--blue);
+    background: #dce8ff;
+  }
+  .codeIcon svg {
+    width: 24px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .roleCard p {
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tilt,
+  .backdrop,
+  .cardPosition {
+    transform: none !important;
+  }
+}

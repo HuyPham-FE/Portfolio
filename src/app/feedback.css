@@ -1,0 +1,538 @@
+/* Focused feedback pass: stable flow layouts, deliberate title breaks, real tools. */
+.skills-heading-frame {
+  container-type: inline-size;
+  min-width: 0;
+  grid-column: 1;
+}
+.skills .skills-title {
+  font-size: clamp(26px, 9.25cqw, 50px);
+  line-height: 1.16;
+  letter-spacing: -0.055em;
+  white-space: normal;
+}
+.skills-title > span {
+  display: block;
+  white-space: nowrap;
+}
+.skills-copy {
+  min-width: 0;
+}
+.skill-burst.skill-0 {
+  left: 29%;
+  top: 0;
+}
+.skill-burst.skill-1 {
+  right: 0;
+  top: 29%;
+}
+.skill-burst.skill-2 {
+  left: 0;
+  top: 29%;
+}
+.skill-burst.skill-3 {
+  left: 8%;
+  right: auto;
+  bottom: 0;
+}
+.skill-burst.skill-4 {
+  left: auto;
+  right: 4%;
+  bottom: 0;
+}
+.skill-tile.selected {
+  border-color: #91b7ff;
+  box-shadow:
+    0 24px 50px #2864f03a,
+    inset 0 1px 0 #ffffff55;
+}
+.skill-burst:has(.selected) {
+  z-index: 3;
+}
+.skill-tile .brand-mark img {
+  width: 23px;
+  height: 23px;
+}
+/* Natural-height website -> marketing composition. No fixed-height mobile canvas. */
+.growth-story {
+  min-height: 0;
+}
+.growth-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 8%;
+  height: auto;
+  min-height: 620px;
+  margin: 55px 0 0;
+}
+.growth-build {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+}
+.growth-code {
+  position: relative;
+  inset: auto;
+  width: 82%;
+  padding: 20px 24px;
+}
+.growth-code pre {
+  font-size: clamp(11px, 1vw, 15px);
+}
+.growth-browser {
+  position: relative;
+  inset: auto;
+  width: 96%;
+  margin: -55px 0 0 4%;
+}
+.growth-tech {
+  position: relative;
+  inset: auto;
+  margin: 40px 0 0 6%;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.growth-market {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  display: grid;
+  gap: 28px;
+}
+.growth-search {
+  transform: rotate(2deg);
+  min-width: 0;
+}
+.growth-searchbar {
+  min-width: 0;
+}
+.growth-searchbar > span:nth-child(2) {
+  overflow-wrap: anywhere;
+}
+.growth-ad {
+  position: relative;
+  inset: auto;
+  margin: 0;
+  transform: rotate(-2deg);
+}
+.growth-connection {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  z-index: 0;
+}
+.growth-build,
+.growth-market {
+  z-index: 1;
+}
+.growth-bottom {
+  margin-top: 40px;
+}
+.growth-disclosure {
+  max-width: 650px;
+}
+/* Light, continuous tools strip. Duplicates share exact widths for an unbroken loop. */
+.technology-section {
+  padding: 55px 0 65px;
+  overflow: hidden;
+  border-block: 1px solid #dbe5f5;
+  background: linear-gradient(100deg, #f8faff, #edf4ff, #f8faff);
+}
+.technology-heading {
+  padding: 0 var(--page-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  margin-bottom: 38px;
+}
+.technology-heading h2 {
+  font-size: clamp(25px, 2.5vw, 38px);
+  line-height: 1.25;
+  letter-spacing: -0.045em;
+  font-weight: 550;
+}
+.technology-heading p {
+  font-size: 15px;
+  max-width: 350px;
+}
+.technology-viewport {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+  padding: 16px 0;
+}
+.technology-track {
+  display: flex;
+  width: max-content;
+  animation: technology-loop 48s linear infinite;
+}
+.technology-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0 30px 0 0;
+  gap: 30px;
+}
+.technology-group li {
+  width: 158px;
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+}
+.technology-group .brand-mark {
+  gap: 13px;
+  transition: transform 0.25s;
+}
+.technology-group .brand-mark:hover {
+  transform: translateY(-3px);
+}
+.technology-group .brand-mark img {
+  width: 35px;
+  height: 35px;
+}
+.technology-group .brand-mark > span {
+  font-size: 16px;
+  font-weight: 500;
+}
+.technology-viewport:hover .technology-track,
+.technology-viewport:focus-within .technology-track,
+.technology-viewport[data-paused="true"] .technology-track {
+  animation-play-state: paused;
+}
+@keyframes technology-loop {
+  to {
+    transform: translateX(-50%);
+  }
+}
+/* Four large editorial scenes with one continuous vertical progress line. */
+.process-story {
+  padding-top: 110px;
+  padding-bottom: 100px;
+  border-top: 1px solid #dbe5f5;
+}
+.process-heading {
+  margin-bottom: 70px;
+}
+.process-heading .section-title {
+  max-width: 850px;
+}
+.process-narrative {
+  position: relative;
+}
+.process-track {
+  position: absolute;
+  left: 27px;
+  top: 30px;
+  bottom: 90px;
+  width: 2px;
+  background: #d6e3f7;
+  overflow: hidden;
+}
+.process-progress {
+  display: block;
+  height: 100%;
+  background: linear-gradient(#2864f0, #81b1ff);
+  transform-origin: top;
+}
+.process-scene {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 7%;
+  padding: 30px 0 70px 100px;
+  min-height: 440px;
+}
+.process-scene + .process-scene {
+  padding-top: 55px;
+}
+.process-marker {
+  position: absolute;
+  left: 0;
+  top: 55px;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #bad0ef;
+  background: #f8faff;
+  border-radius: 50%;
+  color: #607da6;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  transition:
+    color 0.35s,
+    background 0.35s,
+    border-color 0.35s;
+}
+.process-copy h3 {
+  font-size: clamp(26px, 3vw, 44px);
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+  max-width: 390px;
+  transition: color 0.35s;
+}
+.process-copy p {
+  font-size: 17px;
+  max-width: 365px;
+  margin-top: 22px;
+}
+.process-scene.is-active .process-marker {
+  background: #2864f0;
+  color: white;
+  border-color: #2864f0;
+}
+.process-scene.is-active h3 {
+  color: #2864f0;
+}
+.process-figure {
+  margin: 0;
+  min-width: 0;
+}
+.process-figure img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: contain;
+  border-radius: 20px;
+}
+.process-figure figcaption {
+  font-size: 13px;
+  color: #5e7393;
+  margin-top: 18px;
+  line-height: 1.6;
+}
+@media (max-width: 1100px) {
+  .skills-copy > .skills-heading-frame {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .skills .skills-title {
+    font-size: clamp(26px, 9.25cqw, 44px);
+  }
+  .growth-stage {
+    gap: 6%;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    min-height: 0;
+  }
+  .growth-code {
+    width: 95%;
+    padding: 18px;
+  }
+  .growth-browser {
+    width: 100%;
+    margin-left: 0;
+    margin-top: -25px;
+  }
+  .growth-search,
+  .growth-ad {
+    padding: 22px;
+  }
+  .growth-tech {
+    margin-left: 0;
+  }
+  .growth-tech > span {
+    font-size: 12px;
+  }
+  .process-scene {
+    padding-left: 82px;
+    gap: 6%;
+    min-height: 400px;
+  }
+  .process-copy h3 {
+    font-size: 31px;
+  }
+  .process-copy p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .skills-copy {
+    width: 100%;
+  }
+  .skills-heading-frame {
+    max-width: 480px;
+  }
+  .skills .skills-title {
+    font-size: clamp(25px, 9.25cqw, 42px);
+  }
+  .skill-burst.skill-0,
+  .skill-burst.skill-1,
+  .skill-burst.skill-2,
+  .skill-burst.skill-3,
+  .skill-burst.skill-4 {
+    inset: auto;
+  }
+  .skill-tile .brand-mark img {
+    width: 20px;
+    height: 20px;
+  }
+  .growth-stage {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 100px;
+    margin-top: 40px;
+    height: auto;
+    min-height: 0;
+  }
+  .growth-build {
+    width: 100%;
+    height: auto;
+  }
+  .growth-code {
+    width: 94%;
+    padding: 17px;
+  }
+  .growth-code pre {
+    font-size: 12px;
+  }
+  .growth-browser {
+    width: 96%;
+    margin-left: 4%;
+    margin-top: -35px;
+  }
+  .growth-tech {
+    margin: 35px 0 0;
+    gap: 12px;
+  }
+  .growth-tech .brand-row {
+    gap: 12px;
+  }
+  .growth-tech > span {
+    font-size: 12px;
+  }
+  .growth-market {
+    width: 100%;
+    gap: 24px;
+  }
+  .growth-search,
+  .growth-ad {
+    transform: none;
+    padding: 24px;
+  }
+  .growth-ad h3,
+  .growth-search h3 {
+    font-size: 23px;
+  }
+  .growth-ad p,
+  .growth-search p {
+    font-size: 15px;
+  }
+  .growth-connection {
+    inset: 0;
+    height: 100%;
+    transform: none;
+  }
+  .growth-bottom {
+    margin-top: 30px;
+  }
+  .technology-section {
+    padding: 40px 0;
+  }
+  .technology-heading {
+    display: block;
+    margin-bottom: 22px;
+  }
+  .technology-heading h2 {
+    font-size: 27px;
+  }
+  .technology-heading p {
+    margin-top: 14px;
+    font-size: 15px;
+  }
+  .technology-group {
+    gap: 20px;
+    padding-right: 20px;
+  }
+  .technology-group li {
+    width: 140px;
+  }
+  .technology-group .brand-mark img {
+    width: 30px;
+    height: 30px;
+  }
+  .technology-group .brand-mark > span {
+    font-size: 14px;
+  }
+  .process-story {
+    padding-top: 75px;
+    padding-bottom: 65px;
+  }
+  .process-heading {
+    margin-bottom: 45px;
+  }
+  .process-track {
+    left: 17px;
+    top: 18px;
+    bottom: 60px;
+  }
+  .process-scene,
+  .process-scene + .process-scene {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
+    padding: 0 0 55px 52px;
+    min-height: 0;
+  }
+  .process-marker {
+    left: 0;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    font-size: 11px;
+  }
+  .process-copy h3 {
+    font-size: clamp(24px, 6.5vw, 34px);
+  }
+  .process-copy p {
+    margin-top: 15px;
+    font-size: 16px;
+    max-width: none;
+  }
+  .process-figure figcaption {
+    font-size: 12px;
+    margin-top: 12px;
+  }
+  .process-figure img {
+    border-radius: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .technology-viewport {
+    mask-image: none;
+    padding-inline: var(--page-pad);
+  }
+  .technology-track {
+    width: 100%;
+    animation: none;
+  }
+  .technology-group {
+    width: 100%;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .technology-group[aria-hidden="true"] {
+    display: none;
+  }
+  .technology-group li {
+    width: 140px;
+  }
+  .process-progress {
+    transform: none;
+  }
+}
