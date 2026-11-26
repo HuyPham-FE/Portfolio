@@ -17,7 +17,7 @@ Google Analytics và Search Console chưa được thêm như kỹ năng đã x�
 - `src/components/process-story.tsx`: narrative và GSAP context riêng cho process.
 - `public/images/process-*.svg`: bốn hình vector code-native; `docs/qa-assets/process-contact-sheet.png` là contact sheet đã render và xem lại.
 - `src/components/technology-marquee.tsx`: marquee không nút điều khiển.
-- `src/components/growth-story.tsx`: grid composition và đường nối bám layout.
+- `src/components/growth-story.tsx`: grid composition và đường nối bám layout. _(Đã gỡ 2026-11-26.)_
 - `src/components/skill-lab.tsx`: tiêu đề tách dòng, điểm kết thúc scroll trong section.
 - `src/app/feedback.css`: responsive, heading, process, marquee và Value.
 - `src/data/site-settings.ts`, `skills.ts`, `brands.ts`: nội dung và bộ công nghệ.

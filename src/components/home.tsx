@@ -14,7 +14,6 @@ import { SkillLab } from "./skill-lab";
 import { FeaturedSlider } from "./featured-slider";
 import { ProcessStory } from "./process-story";
 import { TechnologyMarquee } from "./technology-marquee";
-import { GrowthStory } from "./growth-story";
 import { MarketingStory } from "./marketing-story";
 import { Contact } from "./contact";
 import { AboutPortrait } from "./about-portrait";
@@ -57,10 +56,6 @@ export function Home({
         <AboutPortrait copy={copy.about} name={settings.name} />
         <SkillLab skills={skills} copy={copy.skills} />
         <TechnologyMarquee copy={copy.technologies} />
-        <GrowthStory
-          copy={copy.growth}
-          image={projects[0].image}
-        />
         <ScrollStackingCards
           content={services}
           projects={projects}

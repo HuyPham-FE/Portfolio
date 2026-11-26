@@ -16,14 +16,9 @@ assert.equal(
   "featured project navigation preserved in the new orbit",
 );
 assert.equal(
-  doc.querySelectorAll(".growth-story").length,
-  1,
-  "new visual story",
-);
-assert.equal(
-  doc.querySelectorAll(".growth-chapters li").length,
+  doc.querySelectorAll(".growth-story, #value").length,
   0,
-  "redundant Build / Connect / Grow row removed",
+  "code-to-growth section removed to shorten the page",
 );
 assert.equal(
   doc.querySelectorAll(".process-scene").length,
@@ -54,7 +49,6 @@ assert.equal(
   0,
   "no illustrative growth chart beside real results",
 );
-assert.equal(doc.querySelectorAll(".growth-disclosure").length, 0);
 for (const text of [
   "CHẠM ĐỂ KHÁM PHÁ",
   "7 giai đoạn minh họa",

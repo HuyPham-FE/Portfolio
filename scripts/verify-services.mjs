@@ -7,8 +7,8 @@ const section = doc.querySelector("#services");
 assert.ok(section);
 assert.equal(doc.querySelectorAll("#services").length, 1);
 assert.ok(
-  section.previousElementSibling.classList.contains("growth-story"),
-  "existing growth section retained before the addition",
+  section.previousElementSibling.classList.contains("technology-section"),
+  "services follow the technology strip directly",
 );
 assert.equal(
   section.nextElementSibling.id,
@@ -52,5 +52,5 @@ assert.equal(
 );
 dom.window.close();
 console.log(
-  "PASS: three native service cards, preserved growth/projects, local assets, real CTA, readable static baseline and illustrative data labels.",
+  "PASS: three native service cards, preserved projects, local assets, real CTA, readable static baseline and illustrative data labels.",
 );

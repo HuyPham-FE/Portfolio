@@ -1,6 +1,6 @@
 # Services scroll stack
 
-The Services section is an addition between the existing GrowthStory and FeaturedSlider. GrowthStory is deliberately retained following the user's correction. No existing section animation is replaced.
+The Services section is an addition between the existing GrowthStory and FeaturedSlider. GrowthStory is deliberately retained following the user's correction. No existing section animation is replaced. GrowthStory was later removed (2026-11-26) at the user's request to shorten the homepage.
 
 Content: `src/data/services.ts`, exposed by `getServices()` in `src/lib/content.ts`. The content contract is `ServiceStackContent`. The Website card references the existing `toan-interior` concept and its local image; this is not a screenshot of a delivered client website. SEO and advertising illustrations are native HTML/SVG and explicitly labelled as illustrative, with no invented results.
 

@@ -20,7 +20,7 @@ Làm trên source hiện có, giữ Next.js App Router, static export, content a
 
 ## Motion và tương tác
 
-`GrowthStory` dùng một timeline với ba nhãn `build`, `connect`, `grow`. ScrollTrigger scrub theo vị trí section, không pin hay chặn wheel. Website hiện trước, đường nối được vẽ, rồi Search/Ads và chart xuất hiện. Cuộn ngược quay lại cùng trạng thái. Cleanup nằm trong GSAP context; reduced motion giữ toàn bộ nội dung ở trạng thái hoàn chỉnh.
+`GrowthStory` dùng một timeline với ba nhãn `build`, `connect`, `grow`. ScrollTrigger scrub theo vị trí section, không pin hay chặn wheel. Website hiện trước, đường nối được vẽ, rồi Search/Ads và chart xuất hiện. Cuộn ngược quay lại cùng trạng thái. Cleanup nằm trong GSAP context; reduced motion giữ toàn bộ nội dung ở trạng thái hoàn chỉnh. _(Đã gỡ khỏi trang chủ ngày 2026-11-26 để rút ngắn trang.)_
 
 Slider giữ click, next/previous, dots, phím trái/phải, swipe và liên kết detail. Vai trò/công nghệ mở khi hover hoặc focus; thiết bị không hover thấy metadata của project active. Chỉ active card có tilt. Kết quả chỉ hiển thị nếu có `verified` và nguồn. Hủy caption tween và xóa style tạm khi đổi slide để không giữ chữ ở trạng thái nửa ẩn khi nhấn liên tục.
 

@@ -52,92 +52,6 @@
   width: 23px;
   height: 23px;
 }
-/* Natural-height website -> marketing composition. No fixed-height mobile canvas. */
-.growth-story {
-  min-height: 0;
-}
-.growth-stage {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  align-items: center;
-  gap: 8%;
-  height: auto;
-  min-height: 620px;
-  margin: 55px 0 0;
-}
-.growth-build {
-  position: relative;
-  inset: auto;
-  width: 100%;
-  height: auto;
-  min-width: 0;
-}
-.growth-code {
-  position: relative;
-  inset: auto;
-  width: 82%;
-  padding: 20px 24px;
-}
-.growth-code pre {
-  font-size: clamp(11px, 1vw, 15px);
-}
-.growth-browser {
-  position: relative;
-  inset: auto;
-  width: 96%;
-  margin: -55px 0 0 4%;
-}
-.growth-tech {
-  position: relative;
-  inset: auto;
-  margin: 40px 0 0 6%;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-.growth-market {
-  position: relative;
-  inset: auto;
-  width: 100%;
-  height: auto;
-  min-width: 0;
-  display: grid;
-  gap: 28px;
-}
-.growth-search {
-  transform: rotate(2deg);
-  min-width: 0;
-}
-.growth-searchbar {
-  min-width: 0;
-}
-.growth-searchbar > span:nth-child(2) {
-  overflow-wrap: anywhere;
-}
-.growth-ad {
-  position: relative;
-  inset: auto;
-  margin: 0;
-  transform: rotate(-2deg);
-}
-.growth-connection {
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transform: none;
-  z-index: 0;
-}
-.growth-build,
-.growth-market {
-  z-index: 1;
-}
-.growth-bottom {
-  margin-top: 40px;
-}
-.growth-disclosure {
-  max-width: 650px;
-}
 /* Light, continuous tools strip. Duplicates share exact widths for an unbroken loop. */
 .technology-section {
   padding: 55px 0 65px;
@@ -325,30 +239,6 @@
   .skills .skills-title {
     font-size: clamp(26px, 9.25cqw, 44px);
   }
-  .growth-stage {
-    gap: 6%;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    min-height: 0;
-  }
-  .growth-code {
-    width: 95%;
-    padding: 18px;
-  }
-  .growth-browser {
-    width: 100%;
-    margin-left: 0;
-    margin-top: -25px;
-  }
-  .growth-search,
-  .growth-ad {
-    padding: 22px;
-  }
-  .growth-tech {
-    margin-left: 0;
-  }
-  .growth-tech > span {
-    font-size: 12px;
-  }
   .process-scene {
     padding-left: 82px;
     gap: 6%;
@@ -381,64 +271,6 @@
   .skill-tile .brand-mark img {
     width: 20px;
     height: 20px;
-  }
-  .growth-stage {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 100px;
-    margin-top: 40px;
-    height: auto;
-    min-height: 0;
-  }
-  .growth-build {
-    width: 100%;
-    height: auto;
-  }
-  .growth-code {
-    width: 94%;
-    padding: 17px;
-  }
-  .growth-code pre {
-    font-size: 12px;
-  }
-  .growth-browser {
-    width: 96%;
-    margin-left: 4%;
-    margin-top: -35px;
-  }
-  .growth-tech {
-    margin: 35px 0 0;
-    gap: 12px;
-  }
-  .growth-tech .brand-row {
-    gap: 12px;
-  }
-  .growth-tech > span {
-    font-size: 12px;
-  }
-  .growth-market {
-    width: 100%;
-    gap: 24px;
-  }
-  .growth-search,
-  .growth-ad {
-    transform: none;
-    padding: 24px;
-  }
-  .growth-ad h3,
-  .growth-search h3 {
-    font-size: 23px;
-  }
-  .growth-ad p,
-  .growth-search p {
-    font-size: 15px;
-  }
-  .growth-connection {
-    inset: 0;
-    height: 100%;
-    transform: none;
-  }
-  .growth-bottom {
-    margin-top: 30px;
   }
   .technology-section {
     padding: 40px 0;

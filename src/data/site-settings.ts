@@ -84,32 +84,6 @@ export const copy = {
     center: "IDEA → IMPACT",
     detail: "TRONG BỘ CÔNG CỤ",
   },
-  growth: {
-    eyebrow: "03 / FROM CODE TO GROWTH",
-    title: "Từ dòng code\nđến tăng trưởng.",
-    body: "Một website tốt là nơi thiết kế, công nghệ và marketing cùng tạo giá trị.",
-    codeLabel: "experience.tsx",
-    code: [
-      "const experience = {",
-      "  design: 'purposeful',",
-      "  development: 'thoughtful',",
-      "  marketing: 'measurable'",
-      "};",
-    ],
-    browserLabel: "Website experience",
-    searchQuery: "Không gian sống có cảm hứng",
-    searchTitle: "Nội dung hữu ích. Trải nghiệm rõ ràng.",
-    searchDescription:
-      "Kết nối nhu cầu tìm kiếm với đúng nội dung trên website.",
-    adTitle: "Thông điệp đúng điểm chạm.",
-    adDescription: "Nội dung sáng tạo gắn với một mục tiêu rõ ràng.",
-    adLabel: "Creative concept",
-    chartLabel: "Đo lường & cải thiện",
-    exampleLabel:
-      "Giao diện và biểu đồ minh họa — không phải kết quả chiến dịch.",
-    platforms: ["google", "facebook"],
-    technologies: ["wordpress", "next", "react"],
-  },
   technologies: {
     title: "Công nghệ trong công việc của tôi.",
     description:
