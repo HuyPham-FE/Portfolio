@@ -11,11 +11,9 @@ import { createGrowthTimeline } from "@/lib/motion/growth-story";
 export function GrowthStory({
   copy,
   image,
-  mockup,
 }: {
   copy: Copy["growth"];
   image: Media;
-  mockup: Copy["hero"]["mockup"];
 }) {
   const root = useRef<HTMLElement>(null);
   const { ready, reduced } = useMotionState();
@@ -152,7 +150,7 @@ export function GrowthStory({
             </pre>
           </div>
           <div className="growth-browser" data-build-browser>
-            <DeviceMockup image={image} copy={mockup} />
+            <DeviceMockup image={image} />
           </div>
           <div className="growth-tech" data-build-tech>
             <BrandRow names={copy.technologies} />

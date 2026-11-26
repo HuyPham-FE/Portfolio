@@ -3,21 +3,18 @@ import Link from "next/link";
 import type { Project, SiteSettings } from "@/types/content";
 import type { Copy } from "@/lib/content";
 import { useSceneMotion } from "@/hooks/use-scene-motion";
-import { Eyebrow, Heading, Tilt, Arrow } from "./ui";
+import { Heading, Tilt } from "./ui";
 import { DeviceMockup } from "./device-mockup";
 import { Contact } from "./contact";
+import { NextProject } from "./next-project";
 export function ProjectDetail({
   project: p,
   next,
-  index,
-  total,
   settings,
   copy,
 }: {
   project: Project;
   next: Project;
-  index: number;
-  total: number;
   settings: SiteSettings;
   copy: Copy;
 }) {
@@ -43,11 +40,7 @@ export function ProjectDetail({
             <Link className="back-link" href="/projects/">
               ← &nbsp;{copy.projects.back}
             </Link>
-            <p className="micro-label">
-              {String(index + 1).padStart(2, "0")} /{" "}
-              {String(total).padStart(2, "0")}
-            </p>
-            <Eyebrow>{p.category}</Eyebrow>
+            <p className="detail-tag">{p.category}</p>
             <h1>
               <span className="line-mask">
                 <span data-hero-line>
@@ -66,11 +59,6 @@ export function ProjectDetail({
             <Tilt>
               <DeviceMockup
                 image={p.image}
-                copy={{
-                  ...copy.hero.mockup,
-                  brand: p.title.toLowerCase(),
-                  title: p.description,
-                }}
                 critical
               />
             </Tilt>
@@ -105,19 +93,14 @@ export function ProjectDetail({
           </div>
         </dl>
         <section className="detail-overview section-shell">
-          <div>
-            <Eyebrow>{copy.projects.sections[0]}</Eyebrow>
-            <Heading>{copy.projects.overview}</Heading>
-          </div>
+          <Heading>{copy.projects.overview}</Heading>
           <p>{p.summary}</p>
         </section>
         <section className="detail-section section-shell">
-          <Eyebrow>{copy.projects.sections[1]}</Eyebrow>
           <Heading>{copy.projects.challenge}</Heading>
           <div className="challenge-list">
-            {p.challenges.map((item, i) => (
+            {p.challenges.map((item) => (
               <article key={item.title} data-reveal>
-                <span className="micro-label">0{i + 1}</span>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
               </article>
@@ -125,7 +108,6 @@ export function ProjectDetail({
           </div>
         </section>
         <section className="detail-section solution-section section-shell">
-          <Eyebrow>{copy.projects.sections[2]}</Eyebrow>
           <Heading>{copy.projects.solution}</Heading>
           <div className="solution-list">
             {p.solutions.map((item, i) => (
@@ -139,10 +121,7 @@ export function ProjectDetail({
           </div>
         </section>
         <section className="detail-section detail-results section-shell">
-          <div>
-            <Eyebrow>{copy.projects.sections[3]}</Eyebrow>
-            <Heading>{copy.projects.results}</Heading>
-          </div>
+          <Heading>{copy.projects.results}</Heading>
           {results.length ? (
             <div className="marketing-kpis">
               {results.map((m) => (
@@ -164,9 +143,7 @@ export function ProjectDetail({
           )}
         </section>
         <section className="detail-section section-shell">
-          <Eyebrow>{copy.projects.sections[4]}</Eyebrow>
           <Heading>{copy.projects.gallery}</Heading>
-          <p className="gallery-note">{copy.projects.galleryNote}</p>
           <div className="project-gallery">
             {p.gallery.map((media, i) => (
               <figure key={`${media.src}-${i}`} data-reveal>
@@ -179,45 +156,19 @@ export function ProjectDetail({
                   width="1400"
                   height="1000"
                 />
-                <figcaption>
-                  <span>0{i + 1}</span>
-                  {media.alt}
-                </figcaption>
               </figure>
             ))}
           </div>
         </section>
         <section className="detail-section section-shell">
-          <Eyebrow>{copy.projects.sections[5]}</Eyebrow>
           <Heading>{copy.projects.stack}</Heading>
           <ul className="tech-stack">
-            {p.technologies.map((tech, i) => (
-              <li key={tech}>
-                <span>{["N", "TS", "≈", "G"][i % 4]}</span>
-                <b>{tech}</b>
-              </li>
+            {p.technologies.map((tech) => (
+              <li key={tech}>{tech}</li>
             ))}
           </ul>
         </section>
-        <Link className="next-project" href={`/projects/${next.slug}/`}>
-          <img
-            src={next.image.src}
-            srcSet={`${next.image.src.replace(".jpg", "-800.jpg")} 800w, ${next.image.src} 1800w`}
-            sizes="100vw"
-            alt={next.image.alt}
-            loading="lazy"
-            width="1800"
-            height="1000"
-          />
-          <div>
-            <p className="micro-label">{copy.projects.next}</p>
-            <h2>
-              {next.title} {next.accent}
-            </h2>
-            <span>{next.category}</span>
-          </div>
-          <span className="next-project-arrow">↗</span>
-        </Link>
+        <NextProject project={next} label={copy.projects.next} />
         <Contact settings={settings} copy={copy.contact} />
       </main>
     </div>

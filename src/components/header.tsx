@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { SiteSettings } from "@/types/content";
 import type { Copy } from "@/lib/content";
+import { Logo } from "./logo";
 export function Header({
   settings,
   copy,
@@ -38,8 +39,7 @@ export function Header({
       </a>
       <header className={`header ${scrolled ? "is-scrolled" : ""}`}>
         <Link href="/" className="wordmark" aria-label={settings.name}>
-          {settings.shortName}
-          <span>.</span>
+          <Logo />
         </Link>
         <nav
           id="main-navigation"

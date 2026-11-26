@@ -36,36 +36,8 @@ p {
 .nav a {
   font-size: 14px;
 }
-.text-button {
-  font-size: 13px;
-}
 .tags > span {
   font-size: 12px;
-}
-.hero-description {
-  font-size: 17px;
-  max-width: 390px;
-  line-height: 1.8;
-}
-.hero .eyebrow {
-  font-size: 11px;
-}
-.hero-actions {
-  margin-top: 32px;
-}
-.hero-device .device {
-  box-shadow:
-    2px 4px 0 #7791b1,
-    16px 42px 55px #182f5d40;
-}
-.hero-bottom {
-  font-size: 10px;
-}
-.floating-label {
-  font-size: 10px;
-}
-.floating-label b {
-  font-size: 17px;
 }
 .discipline-strip {
   font-size: 13px;
@@ -360,9 +332,6 @@ p {
   height: 9px;
   bottom: -20px;
 }
-.growth-browser .mock-copy h3 {
-  font-size: clamp(21px, 2.3vw, 37px);
-}
 .growth-code {
   position: absolute;
   left: 0;
@@ -646,88 +615,20 @@ p {
   font-size: 11px;
   letter-spacing: 0.06em;
 }
-.marketing-editorial {
-  border-top: 1px solid var(--line);
-}
-.marketing-editorial .section-title {
-  max-width: 900px;
-}
-.marketing-editorial .section-top {
-  align-items: center;
-}
-.marketing-editorial .section-top > .brand-row {
-  flex-shrink: 0;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-}
-.marketing-story {
-  display: grid;
-  grid-template-columns: 0.8fr 1.5fr;
-  gap: 7%;
-  margin-top: 70px;
-  align-items: center;
-}
-.marketing-editorial-copy h3 {
-  font-size: 28px;
-  letter-spacing: -0.04em;
-  line-height: 1.35;
-}
-.marketing-editorial-copy > p {
-  font-size: 17px;
-  margin-top: 20px;
-  max-width: 350px;
-}
-.marketing-editorial-copy ul {
-  margin: 30px 0 0;
-  padding: 0;
-  list-style: none;
-}
-.marketing-editorial-copy li {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 15px;
-}
-.marketing-editorial-copy li > span {
-  color: #2864f0;
-  font-size: 11px;
-  margin-right: 18px;
-}
-.marketing-data {
-  min-width: 0;
-}
-.marketing-editorial .chart-panel {
-  border: 0;
-  border-radius: 0;
-  padding: 25px 0;
-  box-shadow: none;
-  background: transparent;
-}
-.chart-header b {
-  font-size: 16px;
-  font-weight: 500;
-}
-.marketing-editorial .growth-chart {
-  margin-top: 35px;
-  max-height: none;
-}
-.chart-disclaimer {
-  font-size: 12px;
-  letter-spacing: 0;
-  line-height: 1.65;
-}
-.data-note {
-  font-size: 14px;
-}
 .marketing-kpis {
-  gap: 20px;
+  /* Eight real metrics: as many columns as fit, never overflowing. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+  gap: 28px 20px;
   margin-top: 0;
 }
-.marketing-kpis > div {
-  padding: 0 15px;
+.marketing-kpis > div,
+.marketing-kpis > div:first-child {
+  padding: 0 0 0 16px;
+  border-left: 1px solid var(--line);
 }
 .marketing-kpis strong {
-  font-size: clamp(32px, 4vw, 64px);
+  font-size: clamp(28px, 2.4vw, 42px);
+  white-space: nowrap;
 }
 .marketing-kpis p,
 .marketing-kpis a {
@@ -962,13 +863,6 @@ p {
   .stack-view-label {
     display: none;
   }
-  .marketing-story {
-    grid-template-columns: 1fr 1.4fr;
-    gap: 5%;
-  }
-  .marketing-editorial .section-top > .brand-row {
-    flex-direction: row;
-  }
   .process-steps {
     gap: 25px;
   }
@@ -995,32 +889,6 @@ p {
   }
   .eyebrow {
     font-size: 10px;
-  }
-  .hero {
-    min-height: 980px;
-  }
-  .hero .eyebrow {
-    font-size: 10px;
-  }
-  .hero-description {
-    font-size: 16px;
-    max-width: 350px;
-  }
-  .hero-actions {
-    gap: 16px;
-  }
-  .hero-actions .button {
-    font-size: 13px;
-    padding: 16px 20px;
-  }
-  .text-button {
-    font-size: 12px;
-  }
-  .hero-bottom {
-    font-size: 9px;
-  }
-  .floating-label {
-    font-size: 8px;
   }
   .discipline-strip {
     font-size: 10px;
@@ -1163,9 +1031,6 @@ p {
     left: 4%;
     width: 92%;
   }
-  .growth-browser .mock-copy h3 {
-    font-size: 24px;
-  }
   .growth-tech {
     bottom: 0;
     left: 6%;
@@ -1303,48 +1168,16 @@ p {
   .slider-hint {
     display: none;
   }
-  .marketing-editorial .section-top {
-    gap: 30px;
-  }
-  .marketing-editorial .section-top > .brand-row {
-    gap: 22px;
-  }
-  .marketing-story {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    margin-top: 45px;
-  }
-  .marketing-editorial-copy h3 {
-    font-size: 26px;
-  }
-  .marketing-editorial-copy > p {
-    font-size: 16px;
-    max-width: none;
-  }
-  .marketing-editorial-copy ul {
-    margin-top: 20px;
-  }
-  .marketing-data {
-    width: 100%;
-  }
-  .chart-header b {
-    font-size: 15px;
-  }
-  .chart-disclaimer {
-    font-size: 11px;
-  }
-  .data-note {
-    font-size: 13px;
-  }
   .marketing-kpis {
     grid-template-columns: 1fr;
   }
-  .marketing-kpis > div {
+  .marketing-kpis > div,
+  .marketing-kpis > div:first-child {
     border: 0;
-    padding: 15px 0;
+    padding: 8px 0;
   }
   .marketing-kpis strong {
-    font-size: 48px;
+    font-size: 38px;
   }
   .process-steps {
     grid-template-columns: 1fr;
@@ -1443,9 +1276,6 @@ p {
   .skill-tile .brand-row {
     gap: 3px;
   }
-  .hero-actions {
-    flex-wrap: wrap;
-  }
   .growth-stage {
     height: 1000px;
   }
@@ -1473,13 +1303,6 @@ p {
   }
   .skill-tile.selected .brand-mark {
     animation: none;
-  }
-}
-/* Short viewports still reserve enough room for readable hero copy and actions. */
-@media (min-width: 768px) {
-  .hero {
-    height: max(860px, 100svh);
-    min-height: 860px;
   }
 }
 @media (max-width: 767px) {

@@ -257,22 +257,6 @@
   min-height: 0;
   aspect-ratio: 1.35;
 }
-.laptop :global(.mock-copy h3) {
-  font-size: clamp(19px, 2vw, 33px);
-}
-.laptop :global(.mock-copy p) {
-  font-size: 9px;
-}
-.laptop :global(.mock-nav) {
-  font-size: 8px;
-  padding: 13px 15px;
-}
-.laptop :global(.mock-nav strong) {
-  font-size: 20px;
-}
-.laptop :global(.mock-nav div) {
-  gap: 10px;
-}
 .laptop :global(.device-base) {
   display: block;
 }
@@ -583,18 +567,6 @@
   .laptop :global(.device) {
     border-width: 6px;
     border-radius: 12px;
-  }
-  .laptop :global(.mock-nav div) {
-    display: none;
-  }
-  .laptop :global(.mock-copy) {
-    padding: 12px;
-  }
-  .laptop :global(.mock-copy h3) {
-    font-size: 22px;
-  }
-  .laptop :global(.mock-copy p) {
-    font-size: 8px;
   }
   .searchSurface {
     width: 95%;

@@ -66,7 +66,7 @@ export function ProjectShowcase({
             <div className="scene-background">
               <img
                 src={p.image.src}
-                srcSet={`${p.image.src.replace(".jpg", "-800.jpg")} 800w, ${p.image.src} 1800w`}
+                srcSet={`${p.image.src.replace(/\.(jpg|webp)$/, "-800.$1")} 800w, ${p.image.src} 1800w`}
                 sizes="100vw"
                 alt=""
                 width="1800"
@@ -112,15 +112,21 @@ export function ProjectShowcase({
                 aria-label={`${copy.projects.detail}: ${p.title}`}
               >
                 <Tilt>
-                  <DeviceMockup
-                    image={p.image}
-                    copy={{
-                      ...copy.hero.mockup,
-                      brand: p.title.toLowerCase(),
-                      title: p.description,
-                    }}
-                    critical={i === 0}
-                  />
+                  {p.seo ? (
+                    // Finished results artwork: shown whole, never cropped into a device frame.
+                    <img
+                      className="scene-artwork"
+                      src={p.image.src}
+                      srcSet={`${p.image.src.replace(/\.(jpg|webp)$/, "-800.$1")} 800w, ${p.image.src} 1648w`}
+                      sizes="(max-width: 767px) 92vw, 50vw"
+                      alt={p.image.alt}
+                      width="1648"
+                      height="928"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <DeviceMockup image={p.image} critical={i === 0} />
+                  )}
                 </Tilt>
               </Link>
               <span className="scene-floating-note">

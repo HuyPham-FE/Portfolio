@@ -1,0 +1,332 @@
+/* 01 Introduction */
+.intro {
+  container-type: inline-size;
+  padding-top: clamp(120px, 11vw, 170px);
+  padding-bottom: clamp(36px, 4vw, 56px);
+  background: radial-gradient(ellipse 70% 90% at 90% 0%, #dfeaff 0%, transparent 70%);
+}
+.title {
+  /* "VietyachtPlus" is ~7em wide: one line at any width. */
+  font-size: min(13.4cqw, 176px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+  color: var(--navy);
+}
+.headline {
+  margin-top: clamp(14px, 1.6vw, 24px);
+  font-size: clamp(22px, 2.4vw, 38px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+  color: var(--navy);
+}
+.meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, max-content));
+  gap: 24px clamp(32px, 5vw, 80px);
+  margin: clamp(32px, 4vw, 52px) 0 0;
+}
+.meta > div + div {
+  padding-left: clamp(24px, 3vw, 40px);
+  border-left: 1px solid var(--line);
+}
+.meta dt {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.meta dd {
+  margin: 6px 0 0;
+  font-size: 18px;
+  font-weight: 650;
+  color: var(--navy);
+}
+
+/* Full-width artwork; the reveal box bleeds so the shadow and tilt are never clipped. */
+.hero {
+  padding-top: 0;
+  padding-bottom: clamp(72px, 8vw, 130px);
+}
+.reveal {
+  padding: 40px;
+  margin: -40px;
+}
+.tilt {
+  perspective: 1800px;
+}
+.artwork {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: clamp(8px, 0.8vw, 14px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: #ffffffd9;
+  box-shadow: 0 50px 90px -60px #1d3f8a80;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.artwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.zoomHint {
+  position: absolute;
+  right: clamp(20px, 2vw, 32px);
+  bottom: clamp(20px, 2vw, 32px);
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffffe6;
+  color: var(--blue);
+  font-size: 22px;
+  box-shadow: 0 10px 24px -12px #1d3f8a80;
+}
+@media (hover: hover) {
+  .artwork:hover img {
+    transform: scale(1.02);
+  }
+}
+.artwork:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 6px;
+}
+
+/* 02 Overview */
+.overview {
+  border-top: 1px solid var(--line);
+}
+.overviewGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 64px);
+  margin-top: clamp(36px, 4vw, 56px);
+}
+.overviewGrid h3 {
+  padding-top: 18px;
+  border-top: 2px solid var(--blue);
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+.overviewGrid p {
+  margin-top: 12px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* 03 SEO performance: oversized figures divided by hairlines, no boxes. */
+.performance {
+  background: linear-gradient(180deg, #f3f7ff, #f8faff);
+}
+.figures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: clamp(40px, 5vw, 72px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.figures li {
+  display: flex;
+  flex-direction: column;
+  padding: 8px clamp(16px, 3vw, 48px);
+  border-left: 1px solid #c9d8f0;
+}
+.figures li:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.unit {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.figures strong {
+  margin-top: 6px;
+  font-size: clamp(72px, 10.5vw, 176px);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--blue);
+}
+.rankLabel {
+  margin-top: 14px;
+  font-size: clamp(17px, 1.5vw, 24px);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.note {
+  margin-top: clamp(32px, 4vw, 52px);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* 04 Keyword rankings */
+.rankings {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(40px, 6vw, 110px);
+  align-items: start;
+  border-top: 1px solid var(--line);
+}
+.rankingsIntro :global(.button) {
+  margin-top: 32px;
+}
+.tableHead {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rows li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(18px, 1.8vw, 26px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.keyword {
+  font-size: clamp(18px, 1.5vw, 23px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.rank {
+  flex-shrink: 0;
+  font-size: clamp(22px, 2vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: #6c7d9b;
+}
+.top .rank {
+  color: var(--blue);
+  font-weight: 750;
+}
+
+/* Zoomed artwork */
+.dialog {
+  max-width: 96vw;
+  max-height: 94svh;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: white;
+  overflow: hidden;
+}
+.dialog::backdrop {
+  background: #0b1530d9;
+  backdrop-filter: blur(6px);
+}
+.zoomScroll {
+  max-height: 94svh;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.zoomScroll img {
+  display: block;
+  width: min(1648px, 96vw);
+  height: auto;
+}
+.close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--navy);
+  color: white;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.close span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+@media (max-width: 1099px) {
+  .rankings {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .overviewGrid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 680px;
+  }
+}
+@media (max-width: 767px) {
+  .meta {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .meta > div + div {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .meta > div:first-child {
+    grid-column: 1 / -1;
+  }
+  .meta dd {
+    font-size: 16px;
+  }
+  .reveal {
+    padding: 20px;
+    margin: -20px;
+  }
+  .artwork {
+    border-radius: 18px;
+  }
+  .artwork img {
+    border-radius: 12px;
+  }
+  .zoomHint {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+  .figures li {
+    padding-inline: 12px;
+  }
+  .figures strong {
+    font-size: 60px;
+  }
+  .unit {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .rankLabel {
+    font-size: 15px;
+  }
+  /* Pan the full-resolution artwork to read the keyword table. */
+  .zoomScroll img {
+    width: 1100px;
+    max-width: none;
+  }
+}

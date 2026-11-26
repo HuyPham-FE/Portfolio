@@ -13,6 +13,11 @@ export interface Metric {
   label: string;
   verified: boolean;
   source?: string;
+  /** Grid area name in the case-study layout. */
+  id?: string;
+  /** Plain-language meaning of an industry abbreviation. */
+  note?: string;
+  highlight?: boolean;
 }
 export interface Project {
   slug: string;
@@ -35,6 +40,16 @@ export interface Project {
   solutions: StoryItem[];
   results: Metric[];
   resultNote: string;
+  /** Present for SEO case studies: the image is finished artwork, shown uncropped. */
+  seo?: SeoCaseStudy;
+}
+export interface SeoCaseStudy {
+  headline: string;
+  discipline: string;
+  overview: StoryItem[];
+  rankings: { value: number; label: string }[];
+  rankingNote: string;
+  keywords: { keyword: string; rank: number }[];
 }
 export interface BrandAsset {
   name: string;
@@ -51,14 +66,9 @@ export interface Skill {
 }
 export interface AchievementContent {
   metrics: Metric[];
-  demoSeries: number[];
-  demoLabel: string;
-  emptyLabel: string;
-  impact: StoryItem[];
 }
 export interface SiteSettings {
   name: string;
-  shortName: string;
   role: string;
   email: string;
   phone: string;
@@ -103,5 +113,50 @@ export interface ServiceStackContent {
     dashboardTabs: string[];
     dashboardSignals: string[];
     illustrationNote: string;
+  };
+}
+
+export interface HeroLink {
+  label: string;
+  href: string;
+}
+export interface HeroChapter {
+  id: "design" | "development" | "marketing";
+  title: string;
+  description: string;
+  keywords: string[];
+}
+/** Homepage hero copy and visuals. Motion lives in lib/motion/hero-story.ts. */
+export interface HeroContent {
+  lines: string[];
+  description: string;
+  primary: HeroLink;
+  secondary: HeroLink;
+  /** Giant background phrases; the scroll story shows at most two at once. */
+  backdrop: string[];
+  project: { slug: string; cta: string };
+  panels: {
+    development: { title: string; brands: string[] };
+    seo: { brand: string; query: string };
+    ads: { title: string; brands: string[] };
+    chart: { note: string; series: number[] };
+  };
+  chapters: HeroChapter[];
+  design: { palette: string[]; typeface: string };
+  development: {
+    file: string;
+    code: string[];
+    structure: string[];
+    brands: string[];
+  };
+  marketing: {
+    query: string;
+    url: string;
+    title: string;
+    description: string;
+    adTitle: string;
+    adAction: string;
+    adBrands: string[];
+    note: string;
   };
 }

@@ -1,6 +1,7 @@
 import type { SiteSettings } from "@/types/content";
 import type { Copy } from "@/lib/content";
 import { Heading, Arrow } from "./ui";
+import { Logo } from "./logo";
 export function Contact({
   settings,
   copy,
@@ -34,9 +35,8 @@ export function Contact({
         </div>
       </section>
       <footer className="footer">
-        <a className="wordmark" href="/">
-          {settings.shortName}
-          <span>.</span>
+        <a className="wordmark" href="/" aria-label={settings.name}>
+          <Logo />
         </a>
         <span>{copy.copyright}</span>
         <span className="footer-note">{copy.footer}</span>

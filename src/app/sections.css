@@ -539,12 +539,6 @@
   letter-spacing: 0.14em;
   color: #7a8aa4;
 }
-.marketing {
-  background: radial-gradient(ellipse at 50% 75%, #dfebff60, transparent 70%);
-}
-.marketing .section-intro {
-  max-width: 335px;
-}
 .marketing-kpis {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -558,18 +552,6 @@
   padding-left: 0;
   border: 0;
 }
-.metric-placeholder {
-  font-size: 60px;
-  font-weight: 400;
-  letter-spacing: -0.06em;
-  color: var(--blue);
-  line-height: 1.2;
-  display: block;
-}
-.metric-placeholder > span {
-  font-size: 24px;
-  margin-left: 18px;
-}
 .marketing-kpis h3 {
   font-size: 15px;
   margin-top: 10px;
@@ -582,42 +564,6 @@
   font-size: 55px;
   color: var(--blue);
   font-weight: 500;
-}
-.chart-panel {
-  border-radius: 20px;
-  background: #ffffff95;
-  border: 1px solid #fff;
-  box-shadow: 0 20px 70px #2864f00b;
-  padding: 30px 35px 25px;
-}
-.chart-header {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-}
-.chart-header span {
-  color: #7c8caa;
-  font-size: 10px;
-}
-.growth-chart {
-  width: 100%;
-  height: auto;
-  max-height: 330px;
-  margin-top: 20px;
-  overflow: visible;
-}
-.chart-disclaimer {
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  color: #697e9f;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-top: 20px;
-}
-.data-note {
-  font-size: 11px;
-  margin-top: 15px;
 }
 .process {
   padding-top: 70px;

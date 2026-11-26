@@ -1,4 +1,5 @@
 import { services } from "@/data/services";
+import { hero } from "@/data/hero";
 import { brands } from "@/data/brands";
 import { projects } from "@/data/projects";
 import { skills } from "@/data/skills";
@@ -36,3 +37,4 @@ export function getBrand(id: string) {
 }
 
 export const getServices = async () => services;
+export const getHero = async () => hero;

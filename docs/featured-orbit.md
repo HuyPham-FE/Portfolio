@@ -107,3 +107,14 @@ Thêm `refreshPriority: 1` cho pin Featured: tính lại khoảng pin trước c
 Bộ 35 motion tests, production build và export/redesign/services/featured checks đã qua. Chưa nhận xác nhận giao diện từ người dùng trong lượt sửa này; không coi kết quả DOM test là kiểm chứng hình ảnh thực tế.
 
 Cơ chế refresh order theo [GSAP ScrollTrigger.sort](https://gsap.com/docs/v3/Plugins/ScrollTrigger/static.sort/).
+## Thay bằng dải thẻ xoắn ốc theo cuộn (25/11/2026)
+
+Theo yêu cầu người dùng, làm theo section Featured Projects bản desktop của btq.vn (đã xem trực tiếp ở 1920×930 và đọc cấu hình three.js của họ để lấy thông số). Chuỗi 6 pha + GSAP pin ở trên **không còn dùng**; các mục Choreography, `pinReparent`, `refreshPriority` phía trên là lịch sử.
+
+- **Không phải vòng tròn**: một đường xoắn ốc 2 vòng (bán kính 12, cao 28, võng nhẹ ở giữa). Camera đứng yên cách 22, góc nhìn 52°. Một đoàn 8–10 thẻ **cong theo đường xoắn** trượt từ đỉnh (trên-phải) xuống đáy theo tiến độ cuộn, hoàn toàn theo cuộn, không tự quay.
+- **CSS 3D, không WebGL**: mỗi thẻ cắt thành 10 lát dọc, mỗi lát đặt bằng `matrix3d` theo khung (tiếp tuyến, trục cao) của đường xoắn, chồng mép 2px để không lộ đường nối. Ảnh luôn đọc xuôi trái→phải dù nhìn mặt ngoài hay mặt trong đường xoắn. Hai đường mảnh (SVG) chạy dọc mép trên/dưới dải được chiếu từ cùng đường xoắn.
+- **Ghim bằng CSS sticky**: wrapper `570svh` (100svh stage + 4.7 màn hình cuộn), stage `position: sticky`. ScrollTrigger chỉ đọc tiến độ (`start: top top`, `end: bottom bottom`) và gọi `refresh()` một lần sau khi wrapper đổi chiều cao.
+- **Hàng ảnh sau dải xoắn**: hàng riêng nằm dưới wrapper, tự chạy ngang liên tục (CSS animation, 3 bộ giống nhau để nối liền), dừng khi rê chuột hoặc focus. Đây là các link chính cho bàn phím/trình đọc màn hình; dải xoắn là `aria-hidden`, `tabIndex=-1`. Arrow/Home/End di chuyển giữa 4 dự án thật.
+- Chữ FEATURED PROJECTS (đặc + viền) chạy ngang liên tục, nằm phẳng phía sau dải xoắn. Dòng lặp thứ hai trong `h2` là `aria-hidden`.
+- Dưới 768px, chiều cao dưới 540px hoặc reduced-motion: không dựng dải xoắn, hàng ảnh là gallery vuốt ngang như cũ.
+- Lưu ý dev: nếu Next.js báo "1 Issue" hydration với thuộc tính `bis_skin_checked`, đó là do extension trình duyệt chèn vào HTML, không phải lỗi code.

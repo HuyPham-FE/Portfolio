@@ -13,11 +13,11 @@ assert.equal(
 const section = doc.querySelector("[data-featured-orbit]");
 assert.equal(section.querySelectorAll("[data-orbit-stage]").length, 1);
 assert.equal(section.querySelectorAll("[data-orbit-title]").length, 1);
-assert.match(section.querySelector("h2").textContent, /FEATUREDPROJECTS/);
+assert.match(section.querySelector("h2").textContent, /FEATURED\s*PROJECTS/);
 const originals = [
   ...section.querySelectorAll("[data-orbit-card]:not([data-orbit-copy])"),
 ];
-assert.equal(originals.length, 4);
+assert.equal(originals.length, 3);
 const slugs = new Set();
 for (const card of originals) {
   const link = card.querySelector("a");

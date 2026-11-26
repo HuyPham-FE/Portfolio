@@ -18,7 +18,7 @@ export const services: ServiceStackContent = {
         { brand: "react", label: "React" },
       ],
       visual: "website",
-      projectSlug: "toan-interior",
+      projectSlug: "noithatnhom",
     },
     {
       id: "seo-content",
@@ -49,9 +49,9 @@ export const services: ServiceStackContent = {
     },
   ],
   visualCopy: {
-    websiteCaption: "Toan.com · Concept trong portfolio",
+    websiteCaption: "noithatnhom.vn · Website đã triển khai",
     searchQuery: "website nội thất",
-    searchUrl: "toan.com / không gian sống",
+    searchUrl: "noithatnhom.vn / nội thất nhôm",
     searchTitle: "Nội thất hiện đại. Không gian của bạn.",
     searchDescription:
       "Khám phá ý tưởng thiết kế, chất liệu và cảm hứng cho không gian sống.",

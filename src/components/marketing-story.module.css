@@ -1,0 +1,267 @@
+.section {
+  --case-ink: var(--navy);
+  --case-blue: var(--blue);
+  --case-blue-deep: #1a46c4;
+  --case-rule: #d3deef;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+  gap: clamp(56px, 6vw, 112px);
+  align-items: center;
+  overflow: clip;
+  isolation: isolate;
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse 55% 60% at 100% 0%, #dce9ff 0%, transparent 70%),
+    radial-gradient(ellipse 50% 55% at 0% 100%, #e3edff 0%, transparent 70%),
+    linear-gradient(180deg, #fbfcff 0%, #f3f7ff 100%);
+}
+
+/* Background: soft curves in two corners, parallax-driven by data-parallax. */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.curveTop,
+.curveBottom {
+  position: absolute;
+  width: min(48vw, 720px);
+  height: auto;
+}
+.curveTop {
+  top: -40px;
+  right: -60px;
+}
+.curveBottom {
+  bottom: -60px;
+  left: -80px;
+}
+
+/* Intro column */
+.intro {
+  min-width: 0;
+  container-type: inline-size;
+}
+.label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--case-blue);
+}
+.client {
+  margin-top: 14px;
+  font-size: clamp(18px, 1.4vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--case-ink);
+}
+.rule {
+  display: block;
+  width: 64px;
+  height: 2px;
+  margin: 28px 0 30px;
+  background: var(--case-blue);
+}
+.mask {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.mask > span {
+  display: block;
+  white-space: nowrap;
+}
+.title {
+  /* Each sentence holds one line: the longest is ~10.2em wide. */
+  font-size: clamp(30px, 9.4cqw, 68px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+  color: var(--case-ink);
+}
+.accent {
+  color: var(--case-blue);
+}
+.body {
+  max-width: 480px;
+  margin-top: 30px;
+  font-size: clamp(16px, 1.15vw, 18px);
+  line-height: 1.75;
+  color: var(--muted);
+}
+.platforms {
+  margin-top: 36px;
+}
+.platforms :global(.brand-row) {
+  gap: 28px;
+}
+.platforms :global(.brand-mark) {
+  gap: 10px;
+}
+.platforms :global(.brand-mark img) {
+  width: 24px;
+  height: 24px;
+}
+.platforms :global(.brand-mark > span) {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Metrics: a typographic grid divided by fine rules, no cards. */
+.data {
+  min-width: 0;
+}
+.grid {
+  --fit: 5.7cqw;
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-areas:
+    "spend spend impressions"
+    "messages newMessages reach"
+    "cpc ctr cpm";
+  column-gap: clamp(20px, 2.2vw, 36px);
+  margin: 0;
+}
+.metric {
+  --draw: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 2.2vw, 34px) 0 clamp(26px, 2.4vw, 38px);
+}
+.metric::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: var(--case-rule);
+  transform: scaleX(var(--draw));
+  transform-origin: left;
+  transition: background-color 0.3s;
+}
+.value {
+  order: -1;
+  margin: 0;
+}
+.figure {
+  display: inline-block;
+  font-size: clamp(28px, var(--fit), 52px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--case-blue);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s;
+}
+.figure small {
+  margin-left: 0.06em;
+  font-size: 0.56em;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.term {
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--case-ink);
+}
+.note {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 450;
+  color: var(--muted);
+}
+.highlight::before {
+  height: 2px;
+  background: var(--case-blue);
+}
+.highlight .figure {
+  font-size: clamp(36px, calc(var(--fit) * 1.35), 72px);
+  font-weight: 600;
+  color: var(--case-blue-deep);
+}
+.highlight .term {
+  font-size: 16px;
+}
+@media (hover: hover) {
+  .metric:hover .figure {
+    transform: translateY(-3px);
+    color: var(--case-blue-deep);
+  }
+  .metric:hover::before {
+    background: #8fb0f2;
+  }
+  .highlight:hover::before {
+    background: var(--case-blue-deep);
+  }
+}
+.source {
+  margin-top: 26px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Tablet: intro above a full-width three-column grid. */
+@media (max-width: 1099px) {
+  .section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
+  }
+  .body {
+    max-width: 620px;
+  }
+  .curveTop,
+  .curveBottom {
+    width: min(70vw, 560px);
+  }
+}
+
+/* Mobile: two columns; the long spend figure and CPM take full rows. */
+@media (max-width: 767px) {
+  .grid {
+    --fit: 8.6cqw;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "spend spend"
+      "messages newMessages"
+      "impressions reach"
+      "cpc ctr"
+      "cpm cpm";
+    column-gap: 18px;
+  }
+  .metric {
+    padding: 20px 0 22px;
+  }
+  .term {
+    font-size: 14px;
+  }
+  .highlight .term {
+    font-size: 14px;
+  }
+  .note {
+    font-size: 13px;
+  }
+  .rule {
+    margin: 22px 0 24px;
+  }
+  .title {
+    font-size: 36px;
+  }
+  .title .mask > span {
+    white-space: normal;
+  }
+  .curveTop,
+  .curveBottom {
+    width: 90vw;
+  }
+}

@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMotionState } from "@/components/motion-provider";
+import { decimalsOf, formatNumber } from "@/lib/format";
 export function useSceneMotion() {
   const root = useRef<HTMLDivElement>(null);
   const { ready, reduced } = useMotionState();
@@ -98,42 +99,26 @@ export function useSceneMotion() {
             },
           );
       });
-      all<SVGPathElement>("[data-chart-line]").forEach((path) => {
-        const length = path.getTotalLength();
-        gsap.fromTo(
-          path,
-          { strokeDasharray: length, strokeDashoffset: length },
-          {
-            strokeDashoffset: 0,
-            ease: "none",
-            scrollTrigger: {
-              trigger: path.closest("section"),
-              start: "top 65%",
-              end: "center center",
-              scrub: 1,
-            },
-          },
-        );
-      });
-      all(".growth-chart").forEach((chart) => {
-        gsap.from(chart.querySelectorAll("[data-chart-point]"), {
-          opacity: 0,
-          scale: 0,
-          transformOrigin: "center",
-          stagger: 0.09,
-          duration: 0.4,
-          scrollTrigger: { trigger: chart, start: "top 60%", once: true },
-        });
-      });
       all<HTMLElement>("[data-counter]").forEach((el) => {
         const counter = { value: 0 };
+        const target = Number(el.dataset.counter);
+        const pad = Number(el.dataset.counterPad ?? 0); // "05" style figures
+        // Start from zero up front so the figure doesn't flash its final value first.
+        const final = el.textContent;
+        el.textContent = formatNumber(0, decimalsOf(target)).padStart(pad, "0");
+        listeners.push(() => {
+          el.textContent = final;
+        });
         gsap.to(counter, {
-          value: Number(el.dataset.counter),
+          value: target,
           duration: 1.6,
           ease: "power2.out",
           scrollTrigger: { trigger: el, start: "top 90%", once: true },
           onUpdate: () => {
-            el.textContent = String(Math.round(counter.value));
+            el.textContent = formatNumber(
+              counter.value,
+              decimalsOf(target),
+            ).padStart(pad, "0");
           },
         });
       });

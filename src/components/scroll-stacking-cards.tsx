@@ -2,7 +2,6 @@
 import { useEffect, useRef, type CSSProperties } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import type { Copy } from "@/lib/content";
 import type { Project, ServiceStackContent } from "@/types/content";
 import {
   createServiceStackTimeline,
@@ -16,11 +15,9 @@ import styles from "./scroll-stacking-cards.module.css";
 export function ScrollStackingCards({
   content,
   projects,
-  mockup,
 }: {
   content: ServiceStackContent;
   projects: Project[];
-  mockup: Copy["hero"]["mockup"];
 }) {
   const root = useRef<HTMLElement>(null);
   const { ready, reduced } = useMotionState();
@@ -200,7 +197,6 @@ export function ScrollStackingCards({
                   project={projects.find(
                     (project) => project.slug === card.projectSlug,
                   )}
-                  mockup={mockup}
                 />
                 <div
                   className={styles.shade}

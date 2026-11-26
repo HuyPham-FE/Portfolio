@@ -1,14 +1,15 @@
 import assert from "node:assert/strict";
 import { readFile, readdir, access, stat } from "node:fs/promises";
 import { resolve, join } from "node:path";
+import { JSDOM } from "jsdom";
 const root = resolve("out");
 const routes = [
   "/",
   "/projects/",
-  "/projects/toan-interior/",
-  "/projects/lakeside-retreat/",
-  "/projects/blue-voyage/",
-  "/projects/form-living/",
+  "/projects/noithatnhom/",
+  "/projects/thuethuyen/",
+  "/projects/nangto/",
+  "/projects/vietyachtplus/",
 ];
 let checkedLinks = 0;
 for (const route of routes) {
@@ -48,10 +49,38 @@ for (const route of routes) {
     checkedLinks++;
   }
 }
+// SEO case study: the exact supplied rankings, nothing invented.
+const seoDom = new JSDOM(
+  await readFile(join(root, "projects/vietyachtplus/index.html"), "utf8"),
+);
+const seoDoc = seoDom.window.document;
+assert.deepEqual(
+  [...seoDoc.querySelectorAll("[data-counter]")].map((el) => el.textContent),
+  ["05", "06", "07"],
+);
+assert.deepEqual(
+  [...seoDoc.querySelectorAll("main ol li")].map((li) => li.textContent),
+  [
+    "Lái thuyềnThứ hạng #1",
+    "Giá du thuyềnThứ hạng #1",
+    "Học bằng thuyền trưởng hạng 3Thứ hạng #1",
+    "Du thuyền cá nhânThứ hạng #1",
+    "Công ty cho thuê du thuyềnThứ hạng #1",
+    "Yacht là gìThứ hạng #3",
+    "YachtThứ hạng #12",
+  ],
+);
+assert.ok(seoDoc.querySelector('dialog img[src="/images/project-vietyachtplus.webp"]'));
+assert.doesNotMatch(
+  seoDoc.querySelector("main").textContent,
+  /traffic|doanh thu|chuyển đổi|ROAS/i,
+  "no unsupported SEO claims",
+);
+seoDom.window.close();
 const notFound = await readFile(join(root, "404.html"), "utf8");
 assert.match(notFound, /404/);
 const imageFiles = await readdir(join(root, "images"));
-assert.equal(imageFiles.filter((file) => file.endsWith("-800.jpg")).length, 5);
+assert.equal(imageFiles.filter((file) => file.endsWith("-800.jpg")).length, 3);
 console.log(
   `PASS: ${routes.length} static routes, ${checkedLinks} local references, metadata, contact links, content labels, 404 and mobile assets.`,
 );

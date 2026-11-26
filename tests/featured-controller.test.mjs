@@ -31,220 +31,97 @@ window.matchMedia = () => ({
   addListener() {},
   removeListener() {},
 });
-let observed = 0;
-globalThis.ResizeObserver = class {
-  observe() {
-    observed++;
-  }
-  disconnect() {
-    observed--;
-  }
-};
-globalThis.IntersectionObserver = class {
-  observe() {
-    observed++;
-  }
-  disconnect() {
-    observed--;
-  }
-};
 const { gsap } = await import("gsap");
 const { ScrollTrigger } = await import("gsap/ScrollTrigger");
 const { createFeaturedController } =
   await import("../src/lib/motion/featured-controller.ts");
 
+const slices = '<span data-slice class="slice"></span>'.repeat(10);
 function fixture() {
   window.scrollTo(0, 0);
-  document.body.innerHTML = `<div class="page-enter" style="animation:page-in .6s ease-out both"><section><div class="stage" data-orbit-stage><h2 data-orbit-title>Featured</h2><div data-orbit-outline>Projects</div><div data-orbit-plane>${Array.from({ length: 8 }, () => '<article class="card" data-orbit-card><div data-orbit-loop><a href="/projects/test/">Project</a></div></article>').join("")}</div><span data-orbit-hint></span><span data-orbit-meter></span></div></section></div>`;
+  document.body.innerHTML = `<section class="section"><div class="roll" data-orbit-roll><div class="stage" data-orbit-stage><h2>Featured</h2><div class="helix" data-orbit-helix><svg><path data-ribbon-edge/><path data-ribbon-edge/></svg><div class="helixOrigin">${Array.from({ length: 8 }, (_, i) => `<a class="helixCard" data-helix-card href="/projects/p${i % 4}/">${slices}</a>`).join("")}</div></div></div></div><div data-orbit-plane>${Array.from({ length: 4 }, (_, i) => `<article data-orbit-card><a href="/projects/p${i}/">Project</a></article>`).join("")}</div></section>`;
   const root = document.querySelector("section");
-  const stage = root.querySelector("[data-orbit-stage]");
-  Object.defineProperties(stage, {
-    clientWidth: { value: 1440 },
-    clientHeight: { value: 900 },
+  Object.defineProperties(root.querySelector("[data-orbit-stage]"), {
+    clientWidth: { value: 1920 },
+    clientHeight: { value: 930 },
   });
   return root;
 }
 
-test("real GSAP controller drives one pin, reverses actual DOM transforms and fully cleans up", () => {
+test("scroll progress slides curved cards down the helix and fully cleans up", () => {
   const root = fixture();
+  const cards = [...root.querySelectorAll("[data-helix-card]")];
+  const edges = [...root.querySelectorAll("[data-ribbon-edge]")];
   for (let mount = 0; mount < 2; mount++) {
     const dispose = createFeaturedController(root, 4);
     const trigger = ScrollTrigger.getById("featured-orbit");
     assert.ok(trigger);
-    assert.equal(
-      ScrollTrigger.getAll().filter((item) => item.vars.id === "featured-orbit")
-        .length,
-      1,
-    );
-    assert.equal(root.querySelectorAll(".pin-spacer").length, 1);
-    const card = root.querySelector("[data-orbit-card]");
+    assert.equal(root.querySelectorAll(".pin-spacer").length, 0, "no pin");
+    assert.equal(root.dataset.enhanced, "true");
     const animation = trigger.animation;
-    assert.ok(animation.labels.orbitDescent < animation.labels.galleryReveal);
+    animation.progress(0);
+    assert.ok(cards.every((card) => card.style.visibility === "hidden"));
+    assert.ok(edges.every((edge) => !edge.getAttribute("d")));
     animation.progress(0.4);
-    const orbit = card.style.transform;
-    assert.match(orbit, /translate3d\(/);
-    assert.doesNotMatch(orbit, /NaN|undefined/);
-    animation.progress(0.9);
-    assert.equal(root.dataset.gallery, "true");
-    assert.match(
-      card.style.transform,
-      /rotateY\(0deg\) rotateZ\(0deg\) scale\(1\)/,
-    );
-    assert.notEqual(card.style.transform, orbit);
+    const shown = cards.filter((card) => card.style.visibility !== "hidden");
+    assert.ok(shown.length > 2, "a train of cards is on the helix");
+    const slice = shown[0].querySelector("[data-slice]");
+    assert.match(slice.style.transform, /^matrix3d\(/);
+    assert.doesNotMatch(slice.style.transform, /NaN|undefined/);
+    assert.match(slice.style.getPropertyValue("--part"), /^\d$/);
+    assert.ok(edges.every((edge) => edge.getAttribute("d").startsWith("M")));
+    const before = slice.style.transform;
+    animation.progress(0.45);
+    assert.notEqual(slice.style.transform, before, "cards move with scroll");
     animation.progress(0.4);
-    assert.equal(card.style.transform, orbit);
-    assert.equal(root.dataset.gallery, "false");
+    assert.equal(slice.style.transform, before, "reverse is deterministic");
+    animation.progress(1);
+    assert.ok(cards.every((card) => card.style.visibility === "hidden"));
     dispose();
     assert.equal(ScrollTrigger.getById("featured-orbit"), undefined);
-    assert.equal(root.querySelectorAll(".pin-spacer").length, 0);
     assert.equal(root.dataset.enhanced, undefined);
-    assert.equal(observed, 0);
-    assert.equal(card.getAttribute("style"), null);
-    assert.equal(
-      root.querySelector("[data-orbit-title]").getAttribute("style"),
-      null,
+    assert.ok(
+      [...root.querySelectorAll("[data-helix-card], [data-slice]")].every(
+        (node) => !node.style.transform && !node.style.visibility,
+      ),
     );
+    assert.ok(edges.every((edge) => !edge.hasAttribute("d")));
   }
 });
 
-test("scrolling pins the scene outside the animated route ancestor, preserves its styles/state, and restores its DOM on exit", () => {
+test("the enhanced stage is CSS-sticky inside its own wrapper and the row auto-scrolls", () => {
   const root = fixture();
   const stage = root.querySelector("[data-orbit-stage]");
-  const card = stage.querySelector("[data-orbit-card]");
-  const dispose = createFeaturedController(root, 4);
-  const trigger = ScrollTrigger.getById("featured-orbit");
-  ScrollTrigger.refresh();
-  trigger.scroll(trigger.start + (trigger.end - trigger.start) * 0.45);
-  ScrollTrigger.update(true);
-  trigger.getTween()?.progress(1);
-  assert.equal(trigger.isActive, true);
-  assert.equal(
-    stage.parentElement,
-    document.body,
-    "fixed scene escapes page-enter containing block",
-  );
-  assert.equal(stage.closest(".page-enter"), null);
-  assert.equal(stage.dataset.enhanced, "true");
-  assert.ok(
-    card.matches('.stage[data-enhanced="true"] .card'),
-    "CSS must not depend on the old section ancestor",
-  );
-  assert.equal(stage.style.position, "fixed");
-  assert.equal(
-    getComputedStyle(card).position,
-    "absolute",
-    "real stylesheet survives reparenting",
-  );
-  assert.ok(Number(card.style.opacity) > 0.9);
-  assert.match(card.style.transform, /translate3d/);
-  trigger.scroll(trigger.start + (trigger.end - trigger.start) * 0.92);
-  ScrollTrigger.update(true);
-  trigger.getTween()?.progress(1);
-  assert.equal(stage.dataset.gallery, "true");
-  trigger.scroll(trigger.end + 20);
-  ScrollTrigger.update(true);
-  assert.ok(root.contains(stage), "scene returns to its spacer after release");
-  trigger.scroll(trigger.start + (trigger.end - trigger.start) * 0.5);
-  ScrollTrigger.update(true);
-  assert.equal(stage.parentElement, document.body);
-  dispose();
-  assert.equal(stage.parentElement, root);
-  assert.equal(stage.dataset.enhanced, undefined);
-  assert.equal(document.body.querySelectorAll(".pin-spacer").length, 0);
-  assert.equal(observed, 0);
-});
-
-test("a late-mounted Featured pin is measured before Marketing and Process downstream", () => {
-  const root = fixture();
-  const downstream = document.createElement("section");
-  root.after(downstream);
-  // jsdom has no layout engine: model normal flow by including the real spacer
-  // padding that ScrollTrigger writes/reverts during refresh.
-  downstream.getBoundingClientRect = () => {
-    const spacing = parseFloat(
-      root.querySelector(".pin-spacer")?.style.paddingBottom || "0",
-    );
-    const top = 1600 + spacing - window.pageYOffset;
-    return {
-      top,
-      bottom: top + 900,
-      left: 0,
-      right: 1440,
-      width: 1440,
-      height: 900,
-      x: 0,
-      y: top,
-      toJSON() {},
-    };
-  };
-  const chart = { draw: 0 },
-    process = { reveal: 0 };
-  const context = gsap.context(() => {
-    gsap.to(chart, {
-      draw: 1,
-      ease: "none",
-      scrollTrigger: {
-        id: "test-marketing",
-        trigger: downstream,
-        start: "top 65%",
-        end: "center center",
-        scrub: true,
-      },
-    });
-    gsap.to(process, {
-      reveal: 1,
-      ease: "none",
-      scrollTrigger: {
-        id: "test-process",
-        trigger: downstream,
-        start: "top 85%",
-        end: "top 35%",
-        scrub: true,
-      },
-    });
-  });
   const dispose = createFeaturedController(root, 4);
   try {
-    ScrollTrigger.refresh();
-    const pin = ScrollTrigger.getById("featured-orbit");
-    const marketing = ScrollTrigger.getById("test-marketing");
-    const steps = ScrollTrigger.getById("test-process");
-    const expectedTop = 1600 + (pin.end - pin.start);
-    assert.ok(
-      Math.abs(marketing.start - (expectedTop - window.innerHeight * 0.65)) < 2,
-      `Marketing start ${marketing.start} must include pin spacing ${pin.end - pin.start}`,
-    );
-    assert.ok(
-      Math.abs(steps.start - (expectedTop - window.innerHeight * 0.85)) < 2,
-      "Process start includes upstream spacing",
-    );
-    for (const progress of [0, 0.5, 1, 0.5, 0]) {
-      marketing.scroll(
-        marketing.start + (marketing.end - marketing.start) * progress,
-      );
-      ScrollTrigger.update(true);
-      assert.ok(Math.abs(chart.draw - progress) < 0.01);
-    }
-    for (const progress of [0, 0.5, 1, 0.5, 0]) {
-      steps.scroll(steps.start + (steps.end - steps.start) * progress);
-      ScrollTrigger.update(true);
-      assert.ok(Math.abs(process.reveal - progress) < 0.01);
-    }
-    marketing.scroll(pin.end * 0.5);
-    ScrollTrigger.update(true);
-    assert.equal(
-      chart.draw,
-      0,
-      "Marketing has not played while Featured is pinned",
-    );
-    assert.equal(
-      process.reveal,
-      0,
-      "Process has not played while Featured is pinned",
-    );
+    assert.equal(getComputedStyle(stage).position, "sticky");
+    assert.equal(stage.parentElement, root.querySelector("[data-orbit-roll]"));
   } finally {
     dispose();
-    context.revert();
+  }
+  assert.notEqual(getComputedStyle(stage).position, "sticky");
+  assert.match(
+    sceneStyles.textContent,
+    /\.section\[data-enhanced="true"\] \.track \{[^}]*animation: orbit-row/,
+  );
+});
+
+test("arrow keys move focus between the original projects in the row", () => {
+  const root = fixture();
+  const dispose = createFeaturedController(root, 4);
+  try {
+    const links = [...root.querySelectorAll("[data-orbit-card] a")];
+    links[0].focus();
+    links[0].dispatchEvent(
+      new window.KeyboardEvent("keydown", { key: "ArrowLeft", bubbles: true }),
+    );
+    assert.equal(document.activeElement, links[3]);
+    links[3].dispatchEvent(
+      new window.KeyboardEvent("keydown", { key: "Home", bubbles: true }),
+    );
+    assert.equal(document.activeElement, links[0]);
+  } finally {
+    dispose();
   }
 });
 

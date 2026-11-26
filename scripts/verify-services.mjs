@@ -19,7 +19,7 @@ assert.equal(section.querySelectorAll("[data-service-card]").length, 3);
 assert.equal(section.querySelectorAll("[data-service-logo]").length, 9);
 assert.ok(section.querySelector('a[href="#process"]'));
 assert.ok(
-  section.querySelector('img[src="/images/interior.jpg"]'),
+  section.querySelector('img[src="/images/project-noithatnhom.jpg"]'),
   "existing Toan concept reused",
 );
 assert.equal(section.querySelectorAll("[data-service-line]").length, 2);

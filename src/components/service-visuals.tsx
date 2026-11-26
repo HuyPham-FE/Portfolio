@@ -1,5 +1,4 @@
 import { useId } from "react";
-import type { Copy } from "@/lib/content";
 import type {
   Project,
   ServiceStackCard,
@@ -150,12 +149,10 @@ export function ServiceVisual({
   card,
   copy,
   project,
-  mockup,
 }: {
   card: ServiceStackCard;
   copy: ServiceStackContent["visualCopy"];
   project?: Project;
-  mockup: Copy["hero"]["mockup"];
 }) {
   return (
     <figure className={`${styles.visual} ${styles[card.visual]}`}>
@@ -163,7 +160,7 @@ export function ServiceVisual({
       <div className={styles.mockupMotion} data-service-mockup>
         {card.visual === "website" && project && (
           <div className={styles.laptop}>
-            <DeviceMockup image={project.image} copy={mockup} />
+            <DeviceMockup image={project.image} />
           </div>
         )}
         {card.visual === "search" && (

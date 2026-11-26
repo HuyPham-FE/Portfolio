@@ -12,7 +12,7 @@ assert.equal(
 );
 assert.equal(
   doc.querySelectorAll("[data-orbit-card]:not([data-orbit-copy])").length,
-  4,
+  3,
   "featured project navigation preserved in the new orbit",
 );
 assert.equal(
@@ -35,15 +35,24 @@ assert.equal(
   0,
   "old imagery and pending KPI boxes removed",
 );
-assert.equal(
-  doc.querySelectorAll(".marketing-kpis").length,
-  0,
-  "no unverified KPI published",
+const caseStudy = doc.querySelector("[data-case-grid]")?.closest("section");
+assert.ok(caseStudy, "AloHouse case study section");
+assert.match(caseStudy.textContent, /AloHouse · 2026/);
+assert.deepEqual(
+  [...caseStudy.querySelectorAll("[data-case-value]")].map(
+    (el) => el.parentElement.textContent,
+  ),
+  ["125.382.488đ", "2.344.327", "992.954", "6.196", "5.001", "2.357đ", "2,27%", "53.483đ"],
+  "exact Meta Ads figures in Vietnamese format, never rounded",
 );
-assert.ok(
-  doc
-    .querySelector(".chart-disclaimer")
-    .textContent.includes("KHÔNG PHẢI KẾT QUẢ THỰC TẾ"),
+assert.equal(
+  caseStudy.querySelector("[data-case-note]").textContent,
+  "Nguồn dữ liệu: Meta Ads Manager · AloHouse 2026",
+);
+assert.equal(
+  caseStudy.querySelectorAll("[data-chart-line],[data-chart-point]").length,
+  0,
+  "no illustrative growth chart beside real results",
 );
 assert.equal(doc.querySelectorAll(".growth-disclosure").length, 0);
 for (const text of [
@@ -111,5 +120,5 @@ for (const img of doc.querySelectorAll(".process-figure img")) {
 }
 dom.window.close();
 console.log(
-  "PASS: redesign content, five skills, existing project links, credible illustrative data, local SVG assets, vertical process and seamless technology marquee, and no duplicate hero.",
+  "PASS: redesign content, five skills, existing project links, exact AloHouse case-study metrics, local SVG assets, vertical process and seamless technology marquee, and no duplicate hero.",
 );

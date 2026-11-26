@@ -1,0 +1,109 @@
+.spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 68fr) minmax(0, 32fr);
+  gap: clamp(36px, 4.6vw, 84px);
+  align-items: center;
+  margin-inline: clamp(24px, 5.5vw, 100px);
+  padding-block: clamp(64px, 7vw, 120px) clamp(80px, 8vw, 140px);
+  border-top: 1px solid #2864f024;
+}
+.visual {
+  min-width: 0;
+}
+/* The reveal clips to this box: the bleed keeps the shadow and tilt corners inside it. */
+.reveal {
+  padding: 36px;
+  margin: -36px;
+}
+.tilt {
+  perspective: 1400px;
+}
+/* A light mat with a hairline border presents the artwork like a framed piece. */
+.frame {
+  display: block;
+  padding: clamp(8px, 0.8vw, 14px);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: #ffffffd9;
+  box-shadow: 0 40px 80px -48px #1d3f8a73;
+  overflow: hidden;
+}
+.frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .frame:hover img {
+    transform: scale(1.025);
+  }
+}
+.info {
+  min-width: 0;
+  container-type: inline-size;
+}
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--blue);
+}
+.name {
+  margin-top: 18px;
+  /* "VietyachtPlus" is ~7em wide: fits its column at any width. */
+  font-size: clamp(38px, 13.6cqw, 84px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.name > span {
+  color: var(--blue);
+}
+.headline {
+  margin-top: 22px;
+  font-size: clamp(19px, 1.5vw, 24px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.summary {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.cta {
+  margin-top: 32px;
+}
+@media (max-width: 1099px) {
+  .spotlight {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+  .name {
+    font-size: clamp(40px, 10vw, 72px);
+  }
+  .info {
+    max-width: 640px;
+  }
+}
+@media (max-width: 767px) {
+  .spotlight {
+    padding-block: 48px 64px;
+    gap: 28px;
+  }
+  .frame {
+    border-radius: 18px;
+  }
+  .frame img {
+    border-radius: 12px;
+  }
+  .summary {
+    font-size: 15px;
+  }
+}
