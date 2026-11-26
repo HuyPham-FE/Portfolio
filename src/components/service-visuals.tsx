@@ -7,6 +7,7 @@ import type {
 import { DeviceMockup } from "./device-mockup";
 import { Brand } from "./brand";
 import styles from "./scroll-stacking-cards.module.css";
+import { Icon } from "./icon";
 
 export function ServiceIcon({
   type,
@@ -205,7 +206,7 @@ export function ServiceVisual({
                 {copy.dashboardSignals.map((label, i) => (
                   <div key={label}>
                     <span className={styles.signalIcon}>
-                      {["↗", "◎", "→"][i]}
+                      <Icon name={(["trend", "target", "arrow-right"] as const)[i % 3]} />
                     </span>
                     <span>{label}</span>
                     <i>

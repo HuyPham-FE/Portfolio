@@ -2,6 +2,7 @@
 import { useEffect, useRef, type ReactNode, type PointerEvent } from "react";
 import gsap from "gsap";
 import { useMotionState } from "./motion-provider";
+import { Icon } from "./icon";
 export function Tilt({
   children,
   className = "",
@@ -55,7 +56,11 @@ export function Tilt({
   );
 }
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
-  return <span aria-hidden="true">{diagonal ? "↗" : "→"}</span>;
+  return (
+    <span aria-hidden="true">
+      <Icon name={diagonal ? "arrow-up-right" : "arrow-right"} />
+    </span>
+  );
 }
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (

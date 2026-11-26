@@ -11,6 +11,7 @@ import { useMotionState } from "./motion-provider";
 import { Brand } from "./brand";
 import { ServiceIcon, ServiceVisual } from "./service-visuals";
 import styles from "./scroll-stacking-cards.module.css";
+import { Icon } from "./icon";
 
 export function ScrollStackingCards({
   content,
@@ -187,7 +188,7 @@ export function ScrollStackingCards({
                   {card.cta && (
                     <a className={styles.cta} href={card.cta.href}>
                       {card.cta.label}
-                      <span aria-hidden="true">→</span>
+                      <span aria-hidden="true"><Icon name="arrow-right" /></span>
                     </a>
                   )}
                 </div>

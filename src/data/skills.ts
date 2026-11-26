@@ -3,7 +3,7 @@ export const skills: Skill[] = [
   {
     id: "development",
     name: "Web Development",
-    icon: "</>",
+    icon: "code",
     brands: ["wordpress", "next", "react"],
     description: "Cấu trúc vững. Tương tác mượt.",
     tools: ["WordPress", "Next.js", "React", "TypeScript"],
@@ -13,7 +13,7 @@ export const skills: Skill[] = [
   {
     id: "design",
     name: "Website Design",
-    icon: "◇",
+    icon: "layout",
     brands: ["figma"],
     description: "Rõ ràng từ điểm chạm đầu tiên.",
     tools: ["Figma", "Design systems", "Prototyping"],
@@ -23,7 +23,7 @@ export const skills: Skill[] = [
   {
     id: "seo",
     name: "SEO & Optimization",
-    icon: "⌕",
+    icon: "search",
     brands: ["google"],
     description: "Dễ tìm thấy. Dễ sử dụng.",
     tools: ["Technical SEO", "On-page", "Core Web Vitals", "Accessibility"],
@@ -33,7 +33,7 @@ export const skills: Skill[] = [
   {
     id: "content",
     name: "Content Marketing",
-    icon: "✎",
+    icon: "pen",
     brands: [],
     description: "Thông điệp đúng. Nội dung có ích.",
     tools: ["SEO content", "Fanpage", "Content strategy"],
@@ -43,7 +43,7 @@ export const skills: Skill[] = [
   {
     id: "ads",
     name: "Digital Advertising",
-    icon: "↗",
+    icon: "trend",
     brands: ["facebook"],
     description: "Kết nối với đúng khách hàng.",
     tools: ["Meta Ads", "Creative", "Measurement"],

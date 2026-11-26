@@ -7,6 +7,7 @@ import { useSceneMotion } from "@/hooks/use-scene-motion";
 import { Eyebrow, Tilt, Arrow } from "./ui";
 import { DeviceMockup } from "./device-mockup";
 import { Contact } from "./contact";
+import { Icon } from "./icon";
 export function ProjectShowcase({
   projects,
   settings,
@@ -88,7 +89,7 @@ export function ProjectShowcase({
               <p className="scene-description">{p.description}</p>
               <p className="scene-summary">{p.summary}</p>
               <Link className="inline-link" href={`/projects/${p.slug}/`}>
-                <span className="circle-button">→</span>
+                <span className="circle-button"><Icon name="arrow-right" /></span>
                 {copy.projects.detail}
                 <Arrow />
               </Link>

@@ -2,6 +2,7 @@ import type { SiteSettings } from "@/types/content";
 import type { Copy } from "@/lib/content";
 import { Heading, Arrow } from "./ui";
 import { Logo } from "./logo";
+import { Icon } from "./icon";
 export function Contact({
   settings,
   copy,
@@ -28,7 +29,7 @@ export function Contact({
           <div className="glass-ribbon ribbon-one" />
           <div className="glass-ribbon ribbon-two" />
           <div className="contact-note">
-            <span>↗</span>
+            <span><Icon name="arrow-up-right" /></span>
             <p>{settings.role}</p>
             <small>{settings.location}</small>
           </div>
@@ -40,7 +41,7 @@ export function Contact({
         </a>
         <span>{copy.copyright}</span>
         <span className="footer-note">{copy.footer}</span>
-        <a href="#main">{copy.back} ↑</a>
+        <a href="#main">{copy.back} <Icon name="arrow-up" /></a>
         {settings.socials.map((s) => (
           <a
             href={s.href}

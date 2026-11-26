@@ -3,7 +3,8 @@ import type { HeroContent } from "@/types/content";
 export const hero: HeroContent = {
   lines: ["Thiết kế website.", "Tối ưu trải nghiệm.", "Tạo tăng trưởng."],
   description:
-    "Tôi kết hợp thiết kế, lập trình và marketing để tạo ra những website không chỉ đẹp mắt mà còn mang lại giá trị thực tế cho thương hiệu.",
+    "Tôi tự thiết kế, lập trình website rồi trực tiếp chạy quảng cáo, SEO và nội dung để website mang về khách hàng thật.",
+  goal: "Đang tìm vị trí Web Developer kiêm Digital Marketing (Marketing Technologist).",
   primary: { label: "Khám phá dự án", href: "#featured" },
   secondary: { label: "Cách tôi làm việc", href: "#process" },
   backdrop: ["WEB EXPERIENCE", "DIGITAL GROWTH", "BUILD · RANK · CONVERT"],

@@ -92,6 +92,40 @@
   line-height: 1.75;
   color: var(--muted);
 }
+.role {
+  max-width: 520px;
+  margin-top: 30px;
+}
+.roleTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--case-ink);
+}
+.roleList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 28px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.roleList li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--case-ink);
+}
+.roleList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--case-blue);
+}
 .platforms {
   margin-top: 36px;
 }
@@ -228,6 +262,9 @@
 
 /* Mobile: two columns; the long spend figure and CPM take full rows. */
 @media (max-width: 767px) {
+  .roleList {
+    grid-template-columns: 1fr;
+  }
   .grid {
     --fit: 8.6cqw;
     grid-template-columns: repeat(2, minmax(0, 1fr));

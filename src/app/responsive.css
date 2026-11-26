@@ -107,12 +107,15 @@
   .wordmark {
     font-size: 22px;
   }
-  .header-cta {
+  .header .header-cta {
     margin-left: auto;
-    margin-right: 17px;
-    padding: 9px 16px;
-    font-size: 10px;
-    gap: 12px;
+    margin-right: 14px;
+    padding: 8px 12px 8px 15px;
+    font-size: 13px;
+    gap: 7px;
+  }
+  .header .header-cta span {
+    font-size: 14px;
   }
   .menu-toggle {
     display: block;

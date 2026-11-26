@@ -9,7 +9,7 @@ const thuethuyen = {
 };
 const nangto = {
   src: "/images/project-nangto.jpg",
-  alt: "Trang chủ nangto.com — Nàng Tơ, tinh hoa lụa Việt",
+  alt: "Trang chủ website Nàng Tơ — tinh hoa lụa Việt",
 };
 const common = {
   status: "published" as const,
@@ -73,6 +73,14 @@ export const projects: Project[] = [
     summary:
       "Website thương hiệu nội thất nhôm tổ ong AloHouse: tấm nhôm tổ ong, tủ bếp, tủ quần áo, tủ lavabo và cửa thông phòng chống nước, chống ẩm.",
     industry: "Nội thất",
+    // Huy ran the whole AloHouse effort, not only the site (see the 2026 case study).
+    role: [
+      "Chiến lược & ngân sách",
+      "Chạy Meta Ads",
+      "Thiết kế & phát triển website",
+      "Content & creative",
+    ],
+    technologies: ["WordPress", "UI/UX Design", "Meta Ads"],
     image: alohouse,
     gallery: [alohouse],
   },
@@ -93,7 +101,11 @@ export const projects: Project[] = [
   {
     ...common,
     slug: "nangto",
-    website: "https://nangto.com/",
+    // nangto.com still serves a default WordPress "Hello world" page; the built
+    // site only runs locally, so no public link until it launches.
+    duration: "Đang hoàn thiện",
+    year: "Chưa ra mắt",
+    resultNote: "Website đang hoàn thiện, chưa ra mắt công khai.",
     title: "Nàng Tơ",
     accent: " Lụa Việt",
     category: "WEBSITE / THỜI TRANG",
@@ -103,8 +115,6 @@ export const projects: Project[] = [
     industry: "Thời trang & lụa",
     image: nangto,
     gallery: [nangto],
-    // shortcut: nangto.com could not be inspected (TLS error), so its stack is not claimed.
-    technologies: ["UI/UX Design"],
   },
   {
     // SEO case study: rankings come from Huy's supplied results artwork. No traffic,

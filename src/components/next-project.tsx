@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Project } from "@/types/content";
+import { Icon } from "./icon";
 
 /** Full-bleed link to the following case study, shared by every project page. */
 export function NextProject({
@@ -28,7 +29,7 @@ export function NextProject({
         </h2>
         <span>{next.category}</span>
       </div>
-      <span className="next-project-arrow">↗</span>
+      <span className="next-project-arrow"><Icon name="arrow-up-right" /></span>
     </Link>
   );
 }

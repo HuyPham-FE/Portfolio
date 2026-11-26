@@ -9,6 +9,7 @@ import { SLICES } from "@/lib/motion/featured-orbit";
 import { useMotionState } from "./motion-provider";
 import { ProjectSpotlight } from "./project-spotlight";
 import styles from "./featured-orbit.module.css";
+import { Icon } from "./icon";
 
 /** Kept as the existing integration point; the stacked slider is fully replaced. */
 export function FeaturedSlider({
@@ -60,7 +61,7 @@ export function FeaturedSlider({
           <header className={styles.header}>
             <Link href="/projects/" className={styles.all}>
               {copy.all}
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true"><Icon name="arrow-up-right" /></span>
             </Link>
           </header>
           <div className={styles.typeScene}>
@@ -104,7 +105,8 @@ export function FeaturedSlider({
                       className={styles.slice}
                       data-slice
                       style={{
-                        backgroundImage: `url(${small(p.image.src)})`,
+                        // Full size: cards scale up in 3D, the 800px copy blurs on HiDPI.
+                        backgroundImage: `url(${p.image.src})`,
                         backgroundSize: `calc(var(--slice-step) * ${SLICES}) 100%`,
                         ["--part" as string]: k,
                       }}
@@ -172,7 +174,7 @@ export function FeaturedSlider({
                 </div>
                 <span className={styles.view}>
                   <span>{copy.view}</span>
-                  <b aria-hidden="true">↗</b>
+                  <b aria-hidden="true"><Icon name="arrow-up-right" /></b>
                 </span>
               </Link>
             </article>

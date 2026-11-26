@@ -212,7 +212,7 @@ p {
 }
 .skill-icon {
   margin: 0;
-  font-size: 28px;
+  font-size: 22px;
 }
 .skill-tile .brand-row {
   gap: 7px;
@@ -668,7 +668,7 @@ p {
     padding: 4px;
   }
   .skill-icon {
-    font-size: 24px;
+    font-size: 20px;
   }
   .lab-core,
   .lab-orbit {

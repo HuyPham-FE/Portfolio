@@ -18,6 +18,7 @@ import { MarketingStory } from "./marketing-story";
 import { Contact } from "./contact";
 import { AboutPortrait } from "./about-portrait";
 import { ScrollStackingCards } from "./scroll-stacking-cards";
+import { Icon } from "./icon";
 export function Home({
   services,
   hero,
@@ -48,7 +49,7 @@ export function Home({
         <div className="discipline-strip">
           {copy.hero.tags.map((t, i) => (
             <span key={t}>
-              {i > 0 && <i>✳</i>}
+              {i > 0 && <i><Icon name="sparkle" /></i>}
               {t}
             </span>
           ))}

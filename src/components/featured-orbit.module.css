@@ -74,6 +74,10 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Negative tracking pulls the box edge inside the last glyph; the clipped
+     gradient would cut the final "S". Pad the paint area, keep the layout. */
+  padding-inline: 0.1em;
+  margin-inline: -0.1em;
 }
 .outline {
   position: absolute;
@@ -84,12 +88,13 @@
   line-height: 1;
   white-space: nowrap;
   letter-spacing: -0.07em;
-  color: transparent;
-  -webkit-text-stroke: 1px #2864f02c;
   z-index: -1;
 }
 .outline > span {
   padding-right: 0.3em;
+  /* Filter defined in the root layout; see the note there. */
+  color: #2864f02c;
+  filter: url(#text-outline);
 }
 .plane {
   display: flex;
@@ -389,6 +394,15 @@
 @media (max-width: 767px) {
   .stage {
     padding-block: 36px;
+  }
+  /* Phone: the outline row ran through the title, the "01 / 03" sat on the
+     screenshot's logo, and captions overlapped screenshot text. */
+  .outline,
+  .index {
+    display: none;
+  }
+  .surface::after {
+    background: linear-gradient(transparent 22%, #0b1d36 88%);
   }
   .header {
     gap: 12px;

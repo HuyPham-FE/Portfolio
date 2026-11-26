@@ -368,3 +368,36 @@
     transform: none;
   }
 }
+/* Mobile polish. Loaded last on purpose: refinements.css comes after
+   responsive.css, so its desktop sizes were overriding phone rules. */
+@media (max-width: 767px) {
+  .contact {
+    min-height: 0;
+  }
+  .contact .section-title {
+    font-size: 34px;
+  }
+  .contact-copy > p:not(.eyebrow) {
+    font-size: 15px;
+    margin: 20px 0 28px;
+  }
+  .contact-copy > .button {
+    padding: 15px 24px;
+    font-size: 15px;
+  }
+  /* Decorative glass and a note repeating the role: 350px of empty phone screen. */
+  .contact-art {
+    display: none;
+  }
+}
+.footer a[href="#main"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}

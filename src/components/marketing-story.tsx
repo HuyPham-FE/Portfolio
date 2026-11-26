@@ -116,6 +116,14 @@ export function MarketingStory({
         <p className={s.body} data-case-fade>
           {copy.body}
         </p>
+        <div className={s.role} data-case-fade>
+          <h3 className={s.roleTitle}>{copy.role.title}</h3>
+          <ul className={s.roleList}>
+            {copy.role.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
         <div className={s.platforms} data-case-fade>
           <BrandRow names={copy.platforms} labels />
         </div>

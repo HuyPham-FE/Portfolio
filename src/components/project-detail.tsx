@@ -7,6 +7,7 @@ import { Heading, Tilt } from "./ui";
 import { DeviceMockup } from "./device-mockup";
 import { Contact } from "./contact";
 import { NextProject } from "./next-project";
+import { Icon } from "./icon";
 export function ProjectDetail({
   project: p,
   next,
@@ -38,7 +39,7 @@ export function ProjectDetail({
           </div>
           <div className="detail-hero-copy">
             <Link className="back-link" href="/projects/">
-              ← &nbsp;{copy.projects.back}
+              <Icon name="arrow-left" /> {copy.projects.back}
             </Link>
             <p className="detail-tag">{p.category}</p>
             <h1>
@@ -84,7 +85,7 @@ export function ProjectDetail({
             <dd>
               {p.website ? (
                 <a href={p.website} target="_blank" rel="noopener noreferrer">
-                  {new URL(p.website).hostname} ↗
+                  {new URL(p.website).hostname} <Icon name="arrow-up-right" />
                 </a>
               ) : (
                 copy.projects.unavailable
@@ -112,10 +113,10 @@ export function ProjectDetail({
           <div className="solution-list">
             {p.solutions.map((item, i) => (
               <article key={item.title} data-reveal>
-                <span className="solution-icon">{["◇", "⌕", "↗", "◎"][i]}</span>
+                <span className="solution-icon"><Icon name={(["layout", "search", "trend", "target"] as const)[i % 4]} /></span>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-                <span className="solution-arrow">→</span>
+                <span className="solution-arrow"><Icon name="arrow-right" /></span>
               </article>
             ))}
           </div>
@@ -131,7 +132,7 @@ export function ProjectDetail({
                     {m.suffix}
                   </strong>
                   <p>{m.label}</p>
-                  <a href={m.source}>{copy.projects.source} ↗</a>
+                  <a href={m.source}>{copy.projects.source} <Icon name="arrow-up-right" /></a>
                 </div>
               ))}
             </div>

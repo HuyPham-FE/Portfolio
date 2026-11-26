@@ -8,6 +8,7 @@ import { createSkillEntrance } from "@/lib/motion/skill-entrance";
 import { BrandRow } from "./brand";
 import { Heading } from "./ui";
 import { useMotionState } from "./motion-provider";
+import { Icon } from "./icon";
 export function SkillLab({
   skills,
   copy,
@@ -120,7 +121,7 @@ export function SkillLab({
         <div className="lab-orbit orbit-one" />
         <div className="lab-orbit orbit-two" />
         <div className="lab-core">
-          <span>✳</span>
+          <span><Icon name="sparkle" /></span>
           <small>{copy.center}</small>
         </div>
         {skills.map((skill, i) => (
@@ -136,13 +137,13 @@ export function SkillLab({
             >
               <div className="skill-tile-content">
                 <div className="skill-tile-top">
-                  <span className="skill-icon">{skill.icon}</span>
+                  <span className="skill-icon"><Icon name={skill.icon} /></span>
                   <BrandRow names={skill.brands.slice(0, 2)} />
                 </div>
                 <h3>{skill.name}</h3>
                 <p>{skill.description}</p>
               </div>
-              <span className="skill-tile-arrow">↗</span>
+              <span className="skill-tile-arrow"><Icon name="arrow-up-right" /></span>
             </button>
           </div>
         ))}

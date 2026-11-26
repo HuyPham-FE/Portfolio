@@ -14,6 +14,7 @@ import { Brand, BrandRow } from "./brand";
 import { DeviceMockup } from "./device-mockup";
 import { Tilt } from "./ui";
 import s from "./hero-story.module.css";
+import { Icon } from "./icon";
 
 const MOTION = "(prefers-reduced-motion: no-preference)";
 
@@ -137,13 +138,13 @@ export function HeroStory({
                 ))}
               </h1>
               <p className={s.lead} data-hero-enter="support">
-                {hero.description}
+                {hero.description} <strong>{hero.goal}</strong>
               </p>
               <div className={s.actions} data-hero-enter="support">
                 <a className={`${s.primary} magnetic`} href={hero.primary.href}>
                   {hero.primary.label}
                   <span className={s.arrow} aria-hidden="true">
-                    ↗
+                    <Icon name="arrow-up-right" />
                   </span>
                 </a>
                 <a
@@ -151,7 +152,7 @@ export function HeroStory({
                   href={hero.secondary.href}
                 >
                   <span className={s.circle} aria-hidden="true">
-                    <span className={s.arrow}>↘</span>
+                    <span className={s.arrow}><Icon name="arrow-down-right" /></span>
                   </span>
                   {hero.secondary.label}
                 </a>
@@ -180,7 +181,7 @@ export function HeroStory({
                       <span className={s.mockupReveal} aria-hidden="true">
                         <b>{projectName}</b>
                         {hero.project.cta}
-                        <span className={s.arrow}>↗</span>
+                        <span className={s.arrow}><Icon name="arrow-up-right" /></span>
                       </span>
                     </Link>
                   </Tilt>

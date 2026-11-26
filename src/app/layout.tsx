@@ -34,6 +34,17 @@ export default async function RootLayout({
         <noscript>
           <style>{`.preloader{display:none!important}`}</style>
         </noscript>
+        {/* Outline text traces the filled glyph edge: -webkit-text-stroke would
+            draw Manrope's overlapping variable-font contours (box in A, X crossings). */}
+        <svg className="svg-defs" aria-hidden="true" focusable="false">
+          <filter id="text-outline">
+            <feComponentTransfer in="SourceAlpha" result="solid">
+              <feFuncA type="linear" slope="40" />
+            </feComponentTransfer>
+            <feMorphology in="SourceGraphic" operator="dilate" radius="1" result="grown" />
+            <feComposite in="grown" in2="solid" operator="out" />
+          </filter>
+        </svg>
         <MotionProvider
           copy={copy}
           name={settings.name}

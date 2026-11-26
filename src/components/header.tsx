@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { SiteSettings } from "@/types/content";
 import type { Copy } from "@/lib/content";
 import { Logo } from "./logo";
+import { Icon } from "./icon";
 export function Header({
   settings,
   copy,
@@ -71,7 +72,7 @@ export function Header({
           href={`mailto:${settings.email}`}
         >
           {copy.nav.talk}
-          <span>↗</span>
+          <span><Icon name="arrow-up-right" /></span>
         </a>
         <button
           className="menu-toggle"

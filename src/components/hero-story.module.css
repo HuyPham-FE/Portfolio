@@ -151,6 +151,12 @@
   line-height: 1.75;
   color: #53647f;
 }
+.lead strong {
+  display: block;
+  margin-top: 10px;
+  font-weight: 700;
+  color: #151d30;
+}
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -430,6 +436,9 @@
   color: transparent;
   -webkit-text-stroke: 1.5px #151d30;
 }
+.section[data-enhanced="true"] .wordOutline {
+  -webkit-text-stroke-width: 2px;
+}
 .wordBlue {
   color: #2864f0;
 }
@@ -676,9 +685,6 @@
   line-height: 0.84;
   letter-spacing: -0.05em;
 }
-.section[data-enhanced="true"] .wordOutline {
-  -webkit-text-stroke-width: 2px;
-}
 .section[data-enhanced="true"] .chapterText {
   font-size: clamp(15px, 1.2vw, 19px);
 }
@@ -831,5 +837,11 @@
 @media (max-width: 899.98px) and (min-width: 600px) {
   .visual {
     width: min(100%, 640px);
+  }
+}
+@media (max-width: 599.98px) {
+  /* Giant background words sit behind the copy on phones and read as clutter. */
+  .type {
+    display: none;
   }
 }

@@ -8,6 +8,7 @@ import { Heading, Tilt } from "./ui";
 import { Contact } from "./contact";
 import { NextProject } from "./next-project";
 import s from "./seo-case-study.module.css";
+import { Icon } from "./icon";
 
 /** Case-study page for an SEO project: artwork, rankings summary and keyword table. */
 export function SeoCaseStudy({
@@ -32,7 +33,7 @@ export function SeoCaseStudy({
       <main id="main">
         <section className={`${s.intro} section-shell`}>
           <Link className="back-link" href="/projects/">
-            ← &nbsp;{t.back}
+            <Icon name="arrow-left" /> {t.back}
           </Link>
           <p className="detail-tag">{p.category}</p>
           <h1 className={s.title}>

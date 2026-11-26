@@ -55,10 +55,23 @@ export interface BrandAsset {
   name: string;
   src: string;
 }
+export type IconName =
+  | "arrow-up-right"
+  | "arrow-right"
+  | "arrow-left"
+  | "arrow-down-right"
+  | "arrow-up"
+  | "code"
+  | "layout"
+  | "search"
+  | "pen"
+  | "trend"
+  | "target"
+  | "sparkle";
 export interface Skill {
   id: string;
   name: string;
-  icon: string;
+  icon: IconName;
   brands: string[];
   description: string;
   tools: string[];
@@ -130,6 +143,8 @@ export interface HeroChapter {
 export interface HeroContent {
   lines: string[];
   description: string;
+  /** The role Huy is applying for, stated plainly for recruiters. */
+  goal: string;
   primary: HeroLink;
   secondary: HeroLink;
   /** Giant background phrases; the scroll story shows at most two at once. */
