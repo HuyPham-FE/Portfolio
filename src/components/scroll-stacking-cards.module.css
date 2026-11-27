@@ -250,9 +250,9 @@
     8px 15px 0 #506176,
     10px 34px 34px -15px #35537c80;
 }
+/* The screen already matches the 1.4 screenshot; a second ratio here left a white strip. */
 .laptop :global(.mock-scene) {
   min-height: 0;
-  aspect-ratio: 1.35;
 }
 .laptop :global(.device-base) {
   display: block;
