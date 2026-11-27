@@ -137,6 +137,24 @@ export function ScrollStackingCards({
       },
       section,
     );
+    // Phones: CSS sticky stack. A card taller than the screen must stick only
+    // once its bottom is visible, so CSS needs each card's height.
+    media.add(
+      "(max-width: 899.98px)",
+      () => {
+        const measure = () =>
+          layers.forEach((layer) =>
+            layer.style.setProperty("--card-h", `${layer.offsetHeight}px`),
+          );
+        const observer = new ResizeObserver(measure);
+        layers.forEach((layer) => observer.observe(layer));
+        return () => {
+          observer.disconnect();
+          layers.forEach((layer) => layer.style.removeProperty("--card-h"));
+        };
+      },
+      section,
+    );
     return () => media.revert();
   }, [ready, reduced, content]);
   return (

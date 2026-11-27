@@ -676,6 +676,21 @@
   }
 }
 
+/* Phones: each card slides up over the previous one. --card-h is set by the
+   component; tall cards get a negative top so their bottom stays readable. */
+@media (max-width: 899.98px) and (prefers-reduced-motion: no-preference) {
+  .layer {
+    position: sticky;
+    top: min(80px, calc(100svh - var(--card-h, 0px) - 16px));
+  }
+  .layer:not(:first-child) .card {
+    box-shadow:
+      0 -18px 40px #1a3c8a1f,
+      0 24px 60px -32px #476fa752,
+      inset 0 1px 0 #ffffff;
+  }
+}
+
 @media (min-width: 900px) and (min-height: 760px) {
   .stack[data-enhanced="true"] .visual {
     width: 100%;
