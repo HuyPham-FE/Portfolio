@@ -137,7 +137,7 @@
     margin-bottom: 25px;
   }
   .heading {
-    font-size: clamp(29px, 11.45cqw, 62px);
+    font-size: var(--title-mobile);
   }
   .body {
     font-size: 17px;

@@ -137,10 +137,11 @@ export function ScrollStackingCards({
       },
       section,
     );
-    // Phones: CSS sticky stack. A card taller than the screen must stick only
-    // once its bottom is visible, so CSS needs each card's height.
+    // Wherever the pinned stage is off (phones, short laptops): CSS sticky stack.
+    // A card taller than the screen must stick only once its bottom is visible,
+    // so CSS needs each card's height.
     media.add(
-      "(max-width: 899.98px)",
+      "(max-width: 899.98px), (max-height: 759.98px)",
       () => {
         const measure = () =>
           layers.forEach((layer) =>

@@ -1,3 +1,7 @@
+/* One section-title size on phones; 30px keeps the longest skills line on a 320px screen. */
+:root {
+  --title-mobile: clamp(30px, 9.2vw, 36px);
+}
 /* Focused feedback pass: stable flow layouts, deliberate title breaks, real tools. */
 .skills-heading-frame {
   container-type: inline-size;
@@ -135,8 +139,6 @@
 }
 /* Four large editorial scenes with one continuous vertical progress line. */
 .process-story {
-  padding-top: 110px;
-  padding-bottom: 100px;
   border-top: 1px solid #dbe5f5;
 }
 .process-heading {
@@ -259,7 +261,7 @@
     max-width: 480px;
   }
   .skills .skills-title {
-    font-size: clamp(25px, 9.25cqw, 42px);
+    font-size: var(--title-mobile);
   }
   .skill-burst.skill-0,
   .skill-burst.skill-1,
@@ -299,10 +301,6 @@
   }
   .technology-group .brand-mark > span {
     font-size: 14px;
-  }
-  .process-story {
-    padding-top: 75px;
-    padding-bottom: 65px;
   }
   .process-heading {
     margin-bottom: 45px;
@@ -374,8 +372,9 @@
   .contact {
     min-height: 0;
   }
+  .section-title,
   .contact .section-title {
-    font-size: 34px;
+    font-size: var(--title-mobile);
   }
   .contact-copy > p:not(.eyebrow) {
     font-size: 15px;

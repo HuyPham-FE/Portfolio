@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMotionState } from "@/components/motion-provider";
 import { decimalsOf, formatNumber } from "@/lib/format";
+import { ENTER_START } from "@/lib/motion/triggers";
 export function useSceneMotion() {
   const root = useRef<HTMLDivElement>(null);
   const { ready, reduced } = useMotionState();
@@ -44,7 +45,7 @@ export function useSceneMotion() {
           y: 35,
           duration: 1.1,
           ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 90%", once: true },
+          scrollTrigger: { trigger: el, start: ENTER_START, once: true },
         }),
       );
       all("[data-parallax]").forEach((el) =>
@@ -113,7 +114,7 @@ export function useSceneMotion() {
           value: target,
           duration: 1.6,
           ease: "power2.out",
-          scrollTrigger: { trigger: el, start: "top 90%", once: true },
+          scrollTrigger: { trigger: el, start: ENTER_START, once: true },
           onUpdate: () => {
             el.textContent = formatNumber(
               counter.value,
@@ -122,32 +123,6 @@ export function useSceneMotion() {
           },
         });
       });
-      all("[data-timeline]").forEach((el) =>
-        gsap.from(el, {
-          scaleX: 0,
-          transformOrigin: "left",
-          ease: "none",
-          scrollTrigger: {
-            trigger: el.closest("[data-process]"),
-            start: "top 75%",
-            end: "center 40%",
-            scrub: 1,
-          },
-        }),
-      );
-      all("[data-step]").forEach((el, i) =>
-        gsap.from(el, {
-          y: 35,
-          opacity: 0.35,
-          duration: 0.65,
-          scrollTrigger: {
-            trigger: el,
-            start: `top ${85 - i * 5}%`,
-            toggleActions: "play none none reverse",
-            toggleClass: "is-current",
-          },
-        }),
-      );
       all<HTMLElement>(".magnetic").forEach((el) => {
         let tween: gsap.core.Tween | undefined;
         const move = (event: PointerEvent) => {

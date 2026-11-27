@@ -292,7 +292,7 @@
     margin: 22px 0 24px;
   }
   .title {
-    font-size: 36px;
+    font-size: var(--title-mobile);
   }
   .title .mask > span {
     white-space: normal;

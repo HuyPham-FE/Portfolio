@@ -7,6 +7,7 @@ import {
   createAboutEntrance,
   portraitPointer,
 } from "@/lib/motion/about-portrait";
+import { ENTER_START } from "@/lib/motion/triggers";
 import { useMotionState } from "./motion-provider";
 import { Arrow } from "./ui";
 import styles from "./about-portrait.module.css";
@@ -39,7 +40,7 @@ export function AboutPortrait({
             trigger: section.querySelector(
               part === "portrait" ? "[data-about-visual]" : "[data-about-copy]",
             ),
-            start: "top 84%",
+            start: ENTER_START,
             animation: timeline,
             once: true,
           });

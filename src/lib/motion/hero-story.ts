@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ENTER_START } from "./triggers.ts";
 
 /**
  * Sticky scroll budget in viewport heights. heroExit is not in it: it plays over
@@ -324,7 +325,7 @@ export function createHeroReveal(root: HTMLElement) {
         y: 0,
         duration: 0.9,
         ease: "power3.out",
-        scrollTrigger: { trigger: chapter, start: "top 88%", once: true },
+        scrollTrigger: { trigger: chapter, start: ENTER_START, once: true },
       },
     ),
   );

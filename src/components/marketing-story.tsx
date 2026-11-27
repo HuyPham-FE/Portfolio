@@ -6,6 +6,7 @@ import type { AchievementContent } from "@/types/content";
 import type { Copy } from "@/lib/content";
 import { formatNumber } from "@/lib/format";
 import { createCaseEntrance } from "@/lib/motion/marketing-case";
+import { ENTER_START } from "@/lib/motion/triggers";
 import { useMotionState } from "./motion-provider";
 import { BrandRow } from "./brand";
 import s from "./marketing-story.module.css";
@@ -40,7 +41,7 @@ export function MarketingStory({
             trigger: section.querySelector(
               part === "metrics" ? "[data-case-grid]" : "[data-case-intro]",
             ),
-            start: "top 80%",
+            start: ENTER_START,
             animation: timeline,
             once: true,
           });

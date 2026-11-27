@@ -1,6 +1,6 @@
 .services {
   position: relative;
-  padding: clamp(80px, 8vw, 130px) var(--page-pad) clamp(60px, 6vw, 100px);
+  padding: clamp(85px, 9vw, 150px) var(--page-pad) clamp(60px, 6vw, 100px);
   background:
     radial-gradient(ellipse at 80% 30%, #dceaffb0, transparent 56%),
     linear-gradient(#f8faff, #eef4ff 50%, #f8faff);
@@ -11,10 +11,10 @@
   margin: 0 auto clamp(50px, 5vw, 85px);
 }
 .intro h2 {
-  font-size: clamp(36px, 4.5vw, 74px);
+  font-size: clamp(40px, 4.6vw, 72px);
   letter-spacing: -0.055em;
   line-height: 1.13;
-  font-weight: 700;
+  font-weight: 650;
   text-wrap: balance;
 }
 .intro h2 > span {
@@ -92,9 +92,6 @@
 }
 .services {
   padding-bottom: 24px;
-}
-.services + :global(.featured) {
-  padding-top: clamp(40px, 4vw, 64px);
 }
 .cardCopy {
   position: relative;
@@ -494,13 +491,13 @@
 }
 @media (max-width: 767px) {
   .services {
-    padding: 75px 20px 65px;
+    padding: 80px var(--page-pad);
   }
   .intro {
     margin-bottom: 38px;
   }
   .intro h2 {
-    font-size: clamp(32px, 8.5vw, 48px);
+    font-size: var(--title-mobile);
   }
   .intro p {
     font-size: 16px;
@@ -676,9 +673,11 @@
   }
 }
 
-/* Phones: each card slides up over the previous one. --card-h is set by the
-   component; tall cards get a negative top so their bottom stays readable. */
-@media (max-width: 899.98px) and (prefers-reduced-motion: no-preference) {
+/* Phones and short laptops (no pinned stage): each card slides up over the
+   previous one. --card-h is set by the component; tall cards get a negative
+   top so their bottom stays readable. */
+@media (max-width: 899.98px) and (prefers-reduced-motion: no-preference),
+  (max-height: 759.98px) and (prefers-reduced-motion: no-preference) {
   .layer {
     position: sticky;
     top: min(80px, calc(100svh - var(--card-h, 0px) - 16px));
